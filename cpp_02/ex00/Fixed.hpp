@@ -1,6 +1,8 @@
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
+#include <iostream>
+
 class Fixed {
 	public:
 		Fixed();									/* Default constructor */
@@ -14,7 +16,7 @@ class Fixed {
 
 	private:
 		int	fixedValue;
-		static const int bits = 8;
+		static const int fractionalBits = 8;		/* Store the number of fractional bits (counting from the right) */
 
 };
 
