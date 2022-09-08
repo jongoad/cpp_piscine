@@ -19,14 +19,15 @@ class Span {
 		/* Public Member Functions */
 
 		void	addNumber(const int num);
-		int	shortestSpan(void);
-		int	longestSpan(void);
+		void	addNumber(const std::vector<int>::iterator& begin, const std::vector<int>::iterator& end);
+		unsigned int	shortestSpan(void) const;
+		unsigned int	longestSpan(void) const;
 
 		/* Exceptions */
 		class noSpanException : public std::exception {
 			public:
 				const char *what() const throw() {
-					return ("Unable to find span: once or less integers stored");
+					return ("Unable to find span: one or less integers stored");
 				}
 		};
 
@@ -40,12 +41,7 @@ class Span {
 	private:
 
 		std::vector<int> store;
-		// int *store;							/* Array of ints to store values */
 		const unsigned int size;			/* Number of values that can be stored */
-		unsigned int countStored;			/* Number of values currently stored */
-		int min;							/* Smallest stored value */
-		int max;							/* Largest stored value */
-
 };
 
 #endif

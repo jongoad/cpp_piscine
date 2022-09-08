@@ -1,4 +1,4 @@
-# include "PhoneBook.hpp"
+# include "../includes/PhoneBook.hpp"
 
 int	main(void)
 {
@@ -17,7 +17,7 @@ int	main(void)
 		else if (Input == "Exit")
 			std::exit(0);
 		else {
-			std:system("clear");
+			std::system("clear");
 			std::cout << "Invalid Command. Please try again." << std::endl;
 			sleep(1);
 			continue;

@@ -10,7 +10,7 @@
 #include <vector>
 #include <algorithm>
 #include <functional>
-#include "Account.hpp"
+#include "../includes/Account.hpp"
 
 
 int		main( void ) {
@@ -54,7 +54,7 @@ int		main( void ) {
 		  ++(it.first), ++(it.second) ) {
 
 		(*(it.first)).makeDeposit( *(it.second) );
-		//This will call makeDeposit with each Account and they paired int value
+		//This will call makeDeposit with each Account and their paired int value
 	}
 
 	//Display account info again
@@ -75,11 +75,3 @@ int		main( void ) {
 
 	return 0;
 }
-
-
-// ************************************************************************** //
-// vim: set ts=4 sw=4 tw=80 noexpandtab:                                      //
-// -*- indent-tabs-mode:t;                                                   -*-
-// -*- mode: c++-mode;                                                       -*-
-// -*- fill-column: 75; comment-column: 75;                                  -*-
-// ************************************************************************** //

@@ -6,9 +6,11 @@
 
 class Contact {
 	public:
-		Contact();						/* Constructor */
-		~Contact();						/* Destructor */
+		/* Constructors & Destructor */
+		Contact();
+		~Contact();
 
+		/* Setters & Getters */
 		int			GetIndex();
 		std::string GetFirstName();
 		std::string GetLastName();
@@ -23,14 +25,14 @@ class Contact {
 		void		SetNumber();
 		void		SetSecret();
 
+		/* Public Member Functions */
 		void		CopyIndex(int);
 		void		CopyFirstName(std::string);
 		void		CopyLastName(std::string);
 		void		CopyNickName(std::string);
 		void		CopyNumber(std::string);
 		void		CopySecret(std::string);
-
-		bool		CheckContact();		/* Check to ensure no empty fields */
+		bool		CheckContact();
 		std::string TruncateString(std::string);
 
 	private:

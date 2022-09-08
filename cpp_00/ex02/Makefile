@@ -1,9 +1,10 @@
 #--------------------------------#
 #    Name and file information   #
 #--------------------------------#
-NAME			:= span
+NAME			:= account
 
-CPP_FILES		:= main.cpp Span.cpp
+
+CPP_FILES		:= tests.cpp Account.cpp
 
 #---------------------------------------------------------#
 #   Directory information and object directory building   #
