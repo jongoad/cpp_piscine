@@ -10,19 +10,19 @@
 class FragTrap : virtual public ClapTrap {
 	public:
 		/* Constructors/Destructors */
-		FragTrap();										/* Default Constructor */
-		FragTrap(std::string name);						/* Name Constructor */
-		FragTrap(const FragTrap &fragtrap);				/* Copy constructor */
-		~FragTrap();									/* Destructor */
+		FragTrap();
+		FragTrap(std::string const name);
+		FragTrap(FragTrap const& other);
+		~FragTrap();
 
 		/* Operator Overloads */
-		FragTrap &operator=(const FragTrap &fragtrap);	/* Copy assignment operator */
+		FragTrap &operator=(FragTrap const& rhs);
 
 		/* Public Member Functions */
-		void highFivesGuys(void);
+		void	highFivesGuys(void);
 
 		/* Function Overrides */
-		void		attack(const std::string &target);
+		void	attack(std::string const& target);
 
 	private:
 };

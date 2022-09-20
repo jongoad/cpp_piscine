@@ -11,18 +11,18 @@ class FragTrap : public ClapTrap {
 	public:
 		/* Constructors/Destructors */
 		FragTrap();										/* Default Constructor */
-		FragTrap(std::string name);						/* Name Constructor */
-		FragTrap(const FragTrap &fragtrap);				/* Copy constructor */
+		FragTrap(std::string const name);						/* Name Constructor */
+		FragTrap(FragTrap const& other);				/* Copy constructor */
 		~FragTrap();									/* Destructor */
 
 		/* Operator Overloads */
-		FragTrap &operator=(const FragTrap &fragtrap);	/* Copy assignment operator */
+		FragTrap &operator=(FragTrap const& rhs);	/* Copy assignment operator */
 
 		/* Public Member Functions */
-		void highFivesGuys(void);
+		void	highFivesGuys(void);
 
 		/* Function Overrides */
-		void		attack(const std::string &target);
+		void	attack(std::string const& target);
 
 	private:
 };

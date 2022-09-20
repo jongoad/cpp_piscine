@@ -78,6 +78,7 @@ bool	PhoneBook::PrintPhonebook() {
 	{
 		std::system("clear");
 		std::cout << "There are no contacts stored." << std::endl;
+		sleep(1);
 		return (false);
 	}
 
@@ -107,7 +108,9 @@ while (1)
 		std::system("clear");
 		this->PrintPhonebook();
 		std::cout << std::endl << "Enter a contact index to see full contact details:" << std::endl;
-		std::cin >> Input;
+		std::getline(std::cin >> std::ws, Input);
+		if (Input.empty())
+			exit(0);
 		if (Input.length() == 1 && isdigit(Input[0]) && Input[0] != '0' && Input[0] != '9' && this->Contacts[(Input[0] - '0')  - 1].CheckContact()) 
 		{
 			std::system("clear");

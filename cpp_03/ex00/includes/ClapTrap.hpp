@@ -12,13 +12,13 @@ class ClapTrap
 {
 	public:
 		/* Constructors/Destructors */
-		ClapTrap();										/* Default Constructor */
-		ClapTrap(const std::string name);				/* Name constructor */
-		ClapTrap(const ClapTrap &claptrap);				/* Copy constructor */
-		~ClapTrap();									/* Destructor */
+		ClapTrap();
+		ClapTrap(std::string const name);
+		ClapTrap(ClapTrap const& other);
+		~ClapTrap();
 
 		/* Operator Overloads */
-		ClapTrap 	&operator=(const ClapTrap &claptrap);	/* Copy assignment operator */
+		ClapTrap&	operator=(ClapTrap const& rhs);
 
 		/* Public Member Functions */
 		void		attack(const std::string &target);
@@ -27,18 +27,21 @@ class ClapTrap
 
 		/* Setters/Getters */
 		std::string	getName(void) const;
-		void		setName(std::string name);
+		void		setName(std::string const name);
 		int			getHitPoints(void) const;
-		void		setHitPoints(int amount);
+		void		setHitPoints(int const amount);
+		int			getInitHitPoints(void) const;
+		void		setInitHitPoints(int const amount);
 		int 		getEnergyPoints(void) const;
-		void		setEnergyPoints(int amount);
+		void		setEnergyPoints(int const amount);
 		int			getAttackDamage(void) const;
-		void		setAttackDamage(int amount);
+		void		setAttackDamage(int const amount);
 
 	private:
 		/* Private Attributes */
 		std::string	name;
 		int			hitPoints;
+		int			initHP;
 		int			energyPoints;
 		int			attackDamage;
 };

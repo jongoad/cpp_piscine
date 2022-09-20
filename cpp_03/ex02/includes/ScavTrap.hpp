@@ -9,28 +9,26 @@
 
 class ScavTrap : public ClapTrap {
 	public:
-	
 		/* Constructors/Destructors */
-		ScavTrap();											/* Default Constructor */
-		ScavTrap(std::string name);							/* Name constructor */
-		ScavTrap(const ScavTrap &scavtrap);					/* Copy constructor */
-		~ScavTrap();										/* Destructor */
+
+		ScavTrap();
+		ScavTrap(std::string const name);
+		ScavTrap(ScavTrap const& other);
+		~ScavTrap();
 
 		/* Operator Overloads */
-		ScavTrap	&operator=(const ScavTrap &scavtrap);		/* Copy assignment operator */
+		ScavTrap	&operator=(ScavTrap const& rhs);
 
 		/* Public Member Functions */
 		void 		guardGate(void);
 
 		/* Function Overrides */
-		void		attack(const std::string &target);
-
+		void		attack(std::string const& target);
 
 	private:
 		/* Private attributes */
 		bool guardingGate;
 };
-
 
 #endif
 

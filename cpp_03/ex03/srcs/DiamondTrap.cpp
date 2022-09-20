@@ -28,7 +28,7 @@ DiamondTrap::DiamondTrap(const DiamondTrap &diamondtrap): ClapTrap(diamondtrap) 
 
 /* Destructor */
 DiamondTrap::~DiamondTrap(void) {
-	std::cout << "A DiamondTrap has been destroyed!" << std::endl;
+	std::cout << "DiamondTrap " << this->getLocalName() << " has been destroyed!" << std::endl;
 }
 
 /*------------------------------*/

@@ -1,3 +1,4 @@
+#include "PhoneBook.h"
 #include "Contact.hpp"
 
 class PhoneBook

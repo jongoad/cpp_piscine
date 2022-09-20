@@ -6,33 +6,31 @@
 
 /* Defualt Constructor */
 FragTrap::FragTrap(void) {
-	std::cout << "A new FragTrap has been created!"
-		<< std::endl;
-	this->setAttackDamage(INIT_FRAG_DAMAGE);
-	this->setEnergyPoints(INIT_FRAG_ENERGY);
+	std::cout << "A new FragTrap has been created!" << std::endl;
 	this->setHitPoints(INIT_FRAG_HP);
+	this->setInitHitPoints(INIT_FRAG_HP);
+	this->setEnergyPoints(INIT_FRAG_ENERGY);
+	this->setAttackDamage(INIT_FRAG_DAMAGE);
 }
 
 /* Name Constructor */
 FragTrap::FragTrap(std::string name):  ClapTrap(name){
-	this->setAttackDamage(INIT_FRAG_DAMAGE);
-	this->setEnergyPoints(INIT_FRAG_ENERGY);
+	std::cout << "A new FragTrap named " << this->getName() << " has been created!" << std::endl;
 	this->setHitPoints(INIT_FRAG_HP);
-	std::cout << "A new FragTrap named " << this->getName()
-		<< " has been created!" << std::endl;
+	this->setInitHitPoints(INIT_FRAG_HP);
+	this->setEnergyPoints(INIT_FRAG_ENERGY);
+	this->setAttackDamage(INIT_FRAG_DAMAGE);
 }
 
 /* Copy Constructor */
 FragTrap::FragTrap(const FragTrap &fragtrap): ClapTrap(fragtrap) {
-	std::cout << "FragTrap copy constructor called!"
-		<< std::endl;
+	std::cout << "FragTrap copy constructor called!" << std::endl;
 	*this = fragtrap;
 }
 
 /* Destructor */
 FragTrap::~FragTrap(void) {
-	std::cout << "FragTrap " << this->getName() << " has been destroyed!"
-		<< std::endl;
+	std::cout << "FragTrap " << this->getName() << " has been destroyed!" << std::endl;
 }
 
 /*------------------------------*/
@@ -40,13 +38,13 @@ FragTrap::~FragTrap(void) {
 /*------------------------------*/
 
 /* Copy assignment operator */
-FragTrap &FragTrap::operator=(const FragTrap &fragtrap) {
-	this->setName(fragtrap.getName()); 
-	this->setHitPoints(fragtrap.getHitPoints());
-	this->setEnergyPoints(fragtrap.getEnergyPoints());
-	this->setAttackDamage(fragtrap.getAttackDamage());
-	std::cout << "FragTrap copy assignement operator called!"
-		<< std::endl;
+FragTrap &FragTrap::operator=(const FragTrap &rhs) {
+	std::cout << "FragTrap copy assignement operator called!" << std::endl;
+	this->setName(rhs.getName()); 
+	this->setHitPoints(rhs.getHitPoints());
+	this->setInitHitPoints(rhs.getInitHitPoints());
+	this->setEnergyPoints(rhs.getEnergyPoints());
+	this->setAttackDamage(rhs.getAttackDamage());
 	return (*this);
 }
 
@@ -55,8 +53,7 @@ FragTrap &FragTrap::operator=(const FragTrap &fragtrap) {
 /*------------------------------*/
 
 void	FragTrap::highFivesGuys(void) {
-	std::cout << "FragTrap " << this->getName() <<
-		" has requested high fives!" << std::endl;
+	std::cout << "FragTrap " << this->getName() << " has requested high fives!" << std::endl;
 }
 
 /*------------------------------*/

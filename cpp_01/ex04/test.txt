@@ -1,2 +1,0 @@
-This is a test string
-Also a test test
