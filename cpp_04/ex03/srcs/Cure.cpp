@@ -10,15 +10,9 @@ Cure::Cure() : AMateria("cure") {
 }
 
 /* Copy Constructor */
-Cure::Cure(const Cure &amateria) : AMateria(amateria) {
+Cure::Cure(const Cure &other) : AMateria(other) {
 	// std::cout << "Cure copy constructor called" << std::endl;
 }
-
-// /* Type Constructor */
-// Cure::Cure(std::string const &type) {
-// 	this->type = type;
-// 	std::cout << "Cure type constructor called" << std::endl;
-// }
 
 /* Destructor */
 Cure::~Cure() {
@@ -29,25 +23,21 @@ Cure::~Cure() {
 /*     Operator Overloads       */
 /*------------------------------*/
 
-Cure    &Cure::operator=(const Cure &amateria) {
-	this->type = amateria.getType();
+Cure    &Cure::operator=(const Cure &rhs) {
+	this->type = rhs.getType();
 	// std::cout << "Cure copy assignment operator called" << std::endl;
 	return (*this);
 }
 
 /*------------------------------*/
-/*        Setters/Getters       */
-/*------------------------------*/
-
-/*------------------------------*/
 /*    Public Member Functions   */
 /*------------------------------*/
 
-AMateria* Cure::clone() const{
+AMateria*	Cure::clone() const {
 	AMateria *clone = new Cure();
 	return (clone);
 }
 
-void Cure::use(ICharacter& target) {
+void	Cure::use(ICharacter& target) {
 	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
 }

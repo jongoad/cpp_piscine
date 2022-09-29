@@ -8,19 +8,17 @@
 class Brain
 {
     public:
-    /* Constructors/Destructor */
-    Brain();
-    Brain(const Brain &brain);
-    ~Brain();
+        /* Constructors/Destructor */
+        Brain();
+        Brain(Brain const& other);
+        ~Brain();
 
-    /* Operator Overloads */
-    Brain &operator=(const Brain &brain);
+        /* Operator Overloads */
+        Brain&  operator=(Brain const& rhs);
 
-    /* Setters/Getters */
-    std::string getIdea(int i) const;
-    void    setIdea(int i, std::string idea);
-
-    private:
+        /* Setters/Getters */
+        std::string getIdea(int const i) const;
+        void    setIdea(int i, std::string idea);
 
     protected:
         std::string ideas[100];

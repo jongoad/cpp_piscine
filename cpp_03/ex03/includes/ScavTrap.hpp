@@ -25,11 +25,10 @@ class ScavTrap : virtual public ClapTrap {
 		void		attack(std::string const& target);
 
 		/* Setters & Getters */
-
 		void		setGuard(const bool status);
 		bool		getGuard(void) const;
 
-	private:
+	protected:
 		/* Private attributes */
 		bool guardingGate;
 };

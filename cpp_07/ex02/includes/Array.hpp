@@ -14,7 +14,7 @@ class Array {
 		~Array();
 
 		/* Operator Overloads */
-		Array&	operator=(const Array &other);
+		Array&	operator=(const Array &rhs);
 		T&		operator[](unsigned int n);
 
 		/* Public Member Functions */

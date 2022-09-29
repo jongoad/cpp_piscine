@@ -6,26 +6,22 @@
 #include <string>
 #include "ICharacter.hpp"
 
-class AMateria
-{
+class AMateria {
     public:
-	
-		/* Constructors/Destructor */
-		// AMateria();
-		AMateria(const AMateria &amateria);
-		AMateria(std::string const &type);
+		/* Constructors & Destructor */
+		AMateria(const AMateria& other);
+		AMateria(std::string const& type);
 		virtual ~AMateria();
 
-
 		/* Public Member Functions */
-		virtual AMateria* clone() const = 0;
-		virtual void use(ICharacter& target);
+		virtual	AMateria*	clone() const = 0;
+		virtual void		use(ICharacter& target);
 
 		/* Setters/Getters */
-		std::string const & getType() const; //Returns the materia type
+		std::string const&	getType() const;
 		
 		/* Operator Overloads */
-		AMateria &operator=(const AMateria &amateria);
+		AMateria&	operator=(const AMateria& rhs);
 
     protected:
         std::string type;

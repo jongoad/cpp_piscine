@@ -3,32 +3,28 @@
 
 #pragma once
 
-#include "../includes/Animal.hpp"
+#include "../includes/A_Animal.hpp"
 #include "../includes/Brain.hpp"
 
-class Cat : public Animal{
+class Cat : public A_Animal{
     public:
-    /* Constructors/Destructor */
-    Cat();
-    Cat(const Cat &cat);
-    ~Cat();
+        /* Constructors & Destructor */
+        Cat();
+        Cat(std::string const type);
+        Cat(Cat const& other);
+        virtual ~Cat();
 
-    /* Operator Overloads */
-    Cat &operator=(const Cat &cat);
+        /* Operator Overloads */
+        Cat& operator=(Cat const& rhs);
 
-    /* Function Overrides */
-    void    makeSound(void) const;
+        /* Function Overrides */
+        void    makeSound(void) const;
 
-    /* Setters/Getters */
-    std::string getIdea(int i) const;
-    void    setIdea(int i, std::string idea) const;
-
-    /* Public Member Functions */
-    void    removeBrain(void) const;
-    
-    private:
-        Brain   *myBrain;
-    protected:
+        /* Setters & Getters */
+        Brain*   getBrain(void);
+        
+        private: 
+            Brain *brain;
 };
 
 #endif

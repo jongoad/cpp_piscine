@@ -1,5 +1,6 @@
 #include "../includes/AMateria.hpp"
 #include <iostream>
+
 /*------------------------------*/
 /*   Constructors/Destructor    */
 /*------------------------------*/
@@ -10,22 +11,19 @@ AMateria::AMateria(std::string const &type) : type(type) {
 }
 
 /* Copy Constructor */
-AMateria::AMateria(const AMateria &amateria) : type(amateria.type) {
-	*this = amateria;
+AMateria::AMateria(const AMateria& other) : type(other.type) {
+	*this = other;
 	std::cout << "AMateria copy constructor called" << std::endl;
 }
 
 /* Destructor */
-AMateria::~AMateria() {
-	std::cout << "AMateria destructor called" << std::endl;
-}
+AMateria::~AMateria() { std::cout << "AMateria destructor called" << std::endl; }
 
 /*------------------------------*/
 /*     Operator Overloads       */
 /*------------------------------*/
-
-AMateria    &AMateria::operator=(const AMateria &amateria) {
-	this->type = amateria.type;
+AMateria&	AMateria::operator=(const AMateria &rhs) {
+	this->type = rhs.type;
 	std::cout << "AMateria copy constructor called" << std::endl;
 	return (*this);
 }
@@ -33,15 +31,9 @@ AMateria    &AMateria::operator=(const AMateria &amateria) {
 /*------------------------------*/
 /*        Setters/Getters       */
 /*------------------------------*/
-
-std::string const & AMateria::getType() const{
-	return (this->type);
-}
+std::string const & AMateria::getType() const{ return (this->type); }
 
 /*------------------------------*/
 /*    Public Member Functions   */
 /*------------------------------*/
-
-void AMateria::use(ICharacter &target) {
-	(void)target;
-}
+void AMateria::use(ICharacter &target) { (void)target; }

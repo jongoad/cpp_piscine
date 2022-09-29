@@ -7,19 +7,17 @@
 
 class Cat : public Animal{
     public:
-    /* Constructors/Destructor */
-    Cat();
-    Cat(const Cat &cat);
-    ~Cat();
+        /* Constructors & Destructor */
+        Cat();
+        Cat(std::string const type);
+        Cat(Cat const& other);
+        virtual ~Cat();
 
-    /* Operator Overloads */
-    Cat &operator=(const Cat &cat);
+        /* Operator Overloads */
+        Cat& operator=(Cat const& rhs);
 
-    /* Function Overrides */
-    void    makeSound(void) const;
-    private:
-
-    protected:
+        /* Function Overrides */
+        void    makeSound(void) const;
 };
 
 #endif

@@ -3,13 +3,8 @@
 /*------------------------------*/
 /*   Constructors/Destructor    */
 /*------------------------------*/
+Bureaucrat::Bureaucrat() : name("default") { std::cout << "Bureaucrat default constructor called" << std::endl; }
 
-/* Default Constructor */
-Bureaucrat::Bureaucrat() {
-	std::cout << "Bureaucrat default constructor called" << std::endl;
-}
-
-/* Name & Grade Constructor */
 Bureaucrat::Bureaucrat(const std::string name, unsigned int grade) : name(name) {
 	std::cout << "Bureaucrat name & grade constructor called" << std::endl;
 	if (grade < 1)
@@ -20,32 +15,27 @@ Bureaucrat::Bureaucrat(const std::string name, unsigned int grade) : name(name) 
 		this->grade = grade;
 }
 
-/* Copy Constructor */
-Bureaucrat::Bureaucrat(const Bureaucrat& other) {
+Bureaucrat::Bureaucrat(const Bureaucrat& other) : name(other.getName()) {
 	std::cout << "Bureaucrat copy constructor called" << std::endl;
 	*this = other;
 }
 
-/* Destructor */
-Bureaucrat::~Bureaucrat() {
-	std::cout << "Bureaucrat destructor called" << std::endl;
-}
+Bureaucrat::~Bureaucrat() { std::cout << "Bureaucrat destructor called" << std::endl; }
 
 /*------------------------------*/
 /*      Operator Overloads      */
 /*------------------------------*/
 
 /* Assignment operator overload */
-Bureaucrat    &Bureaucrat::operator=(const Bureaucrat& other) {
+Bureaucrat    &Bureaucrat::operator=(const Bureaucrat& rhs) {
 	std::cout << "Bureaucrat copy assignment operator called" << std::endl;
-	this->name = other.name;
-	this->grade = other.grade;
+	(void)rhs;
 	return (*this);
 }
 
 /* Insert operator overload */
-std::ostream&	operator<<(std::ostream& os, const Bureaucrat& other) {
-	os << other.getName() << ", bureaucrat grade: " << other.getGrade();
+std::ostream&	operator<<(std::ostream& os, const Bureaucrat& rhs) {
+	os << rhs.getName() << ", bureaucrat grade: " << rhs.getGrade();
 	return (os);
 }
 
@@ -53,15 +43,11 @@ std::ostream&	operator<<(std::ostream& os, const Bureaucrat& other) {
 /*        Setters/Getters       */
 /*------------------------------*/
 
-void	Bureaucrat::setName(const std::string name) {
-	this->name = name;
-}
-
-std::string Bureaucrat::getName(void) const {
+const std::string&	Bureaucrat::getName(void) const {
 	return (this->name);
 }
 
-unsigned int Bureaucrat::getGrade(void) const {
+const unsigned int&	Bureaucrat::getGrade(void) const {
 	return (this->grade);
 }
 

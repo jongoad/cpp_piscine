@@ -12,10 +12,10 @@ class Form
 {
     public:
         /* Constructors/Destructors */
-		Form(const std::string& name);																	/* Name constructor */
-        Form(const std::string& name, const unsigned int signgrade, const unsigned int executegrade);   /* Full constructor */
-        Form(const Form &form);                                                                         /* Copy constructor */
-        ~Form();                                                                                        /* Destructor */
+		Form(const std::string& name);
+        Form(const std::string& name, const unsigned int signgrade, const unsigned int executegrade);
+        Form(const Form &form);
+        ~Form();
 
         /* Operator Overloads */
         Form &operator=(const Form &form);

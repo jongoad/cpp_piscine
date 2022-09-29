@@ -4,7 +4,7 @@
 NAME			:= brain
 
 
-CPP_FILES		:= main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
+CPP_FILES		:= main.cpp A_Animal.cpp Dog.cpp Cat.cpp Brain.cpp
 
 #---------------------------------------------------------#
 #   Directory information and object directory building   #
@@ -25,7 +25,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 #--------------------------------#
 #  Compiler settings and flags   #
 #--------------------------------#
-CC				= g++
+CC				= c++
 RM				= rm -rf
 CFLAGS			= -Wall -Wextra -Werror -Wshadow -Wno-shadow -std=c++98 -I./includes
 

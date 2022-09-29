@@ -13,17 +13,16 @@ class PresidentialPardonForm : public Form
 {
     public:
         /* Constructors/Destructors */
-		PresidentialPardonForm(const std::string& target);																	/* Target Constructor */
-        PresidentialPardonForm(const PresidentialPardonForm &other);                                                       /* Copy constructor */
-        ~PresidentialPardonForm();                                                                                        /* Destructor */
+		PresidentialPardonForm(const std::string& target);
+        PresidentialPardonForm(const PresidentialPardonForm &other);
+        ~PresidentialPardonForm();
 
         /* Operator Overloads */
-        PresidentialPardonForm &operator=(const PresidentialPardonForm &other);
-
-        /* Setters/Getters */
+        PresidentialPardonForm &operator=(const PresidentialPardonForm &rhs);
 
 		/* Public Member Functions */
         void    doAction(const Bureaucrat& input) const;
+
     private:
         PresidentialPardonForm();
 };

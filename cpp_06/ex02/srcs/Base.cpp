@@ -33,11 +33,11 @@ Base*   generate(void) {
 
 void	identify(Base* p) {
 	std::cout << "(pointer)";
-	if (dynamic_cast<A*>(p))
+	if (dynamic_cast<A *>(p))
 		std::cout << "Type of object is: A" << std::endl;
-	else if (dynamic_cast<B*>(p))
+	else if (dynamic_cast<B *>(p))
 		std::cout << "Type of object is: B" << std::endl;
-	else if (dynamic_cast<C*>(p))
+	else if (dynamic_cast<C *>(p))
 		std::cout << "Type of object is: C" << std::endl;
 	else
 		std::cerr << "Bad cast" << std::endl;
@@ -46,11 +46,11 @@ void	identify(Base* p) {
 void	identify(Base& p) {
 	try {
 		std::cout << "(reference)";
-		if (dynamic_cast<A*>(&p))
+		if (dynamic_cast<A *>(&p))
 			std::cout << "Type of object is: A" << std::endl;
-		else if (dynamic_cast<B*>(&p))
+		else if (dynamic_cast<B *>(&p))
 			std::cout << "Type of object is: B" << std::endl;
-		else if (dynamic_cast<C*>(&p))
+		else if (dynamic_cast<C *>(&p))
 			std::cout << "Type of object is: C" << std::endl;
 	}
 	catch (const std::exception &e) {

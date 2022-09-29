@@ -5,5 +5,5 @@ uintptr_t	serialize(Data* ptr) {
 }
 
 Data*	deserialize(uintptr_t raw) {
-	return (reinterpret_cast<Data*>(raw));
+	return (reinterpret_cast<Data *>(raw));
 }

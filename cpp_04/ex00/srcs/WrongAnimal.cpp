@@ -3,20 +3,19 @@
 /*------------------------------*/
 /*    Constructors/Destructor   */
 /*------------------------------*/
-
-/* Default Constructor */
-WrongAnimal::WrongAnimal() {
-	this->type = "Ambiguous Animal";
+WrongAnimal::WrongAnimal() : type("Ambiguous Animal") {
 	std::cout << "WrongAnimal default constructor called" << std::endl;
 }
 
-/* Copy Constructor */
-WrongAnimal::WrongAnimal(const WrongAnimal &wronganimal) {
-	*this = wronganimal;
+WrongAnimal::WrongAnimal(std::string type) : type(type) {
+	std::cout << "WrongAnimal type constructor called" << std::endl;
+}
+
+WrongAnimal::WrongAnimal(const WrongAnimal &other) {
+	*this = other;
 	std::cout << "WrongAnimal copy constructor called" << std::endl;
 }
 
-/* Destructor */
 WrongAnimal::~WrongAnimal() {
 	std::cout << "WrongAnimal destructor called" << std::endl;
 }
@@ -24,9 +23,8 @@ WrongAnimal::~WrongAnimal() {
 /*------------------------------*/
 /*     Operator Overloads       */
 /*------------------------------*/
-
-WrongAnimal	&WrongAnimal::operator=(const WrongAnimal &wronganimal) {
-	this->type = wronganimal.type;
+WrongAnimal& WrongAnimal::operator=(WrongAnimal const &rhs) {
+	this->type = rhs.type;
 	std::cout << "WrongAnimal copy assignment operator called" << std::endl;
 	return (*this);
 }
@@ -34,8 +32,6 @@ WrongAnimal	&WrongAnimal::operator=(const WrongAnimal &wronganimal) {
 /*------------------------------*/
 /*       Setters/Getters        */
 /*------------------------------*/
-
-/* Get animal type */
 std::string	WrongAnimal::getType(void) const{
 	return(this->type);
 }
@@ -43,6 +39,4 @@ std::string	WrongAnimal::getType(void) const{
 /*------------------------------*/
 /*   Public Member Functions    */
 /*------------------------------*/
-void	WrongAnimal::makeSound(void) const{
-	std::cout << "*Default animal noise*" << std::endl;
-}
+void	WrongAnimal::makeSound(void) const{ std::cout << "*Default animal noise*" << std::endl; }

@@ -8,31 +8,27 @@
 
 int	main(void) {
 
-	Data Guy;
-	Data *NewGuy;
-
-	Guy.age = 34;
-	Guy.favColour = "green";
-	Guy.firstName = "Jim";
-	Guy.lastName = "Bob";
+	Data guy;
+	guy.age = 34;
+	guy.favColour = "green";
+	guy.firstName = "Jim";
+	guy.lastName = "Bob";
 
 	std::cout << RED"--------------Testing before Serialize/Deserialize--------------" CLEAR << std::endl;
-
-	std::cout << "Address of object: " << &Guy << std::endl;
-	std::cout << "First Name: " << Guy.firstName << std::endl;
-	std::cout << "Last Name: " << Guy.lastName << std::endl;
-	std::cout << "Favourite Colour: " << Guy.favColour << std::endl;
-	std::cout << "Age: " << Guy.age << std::endl;
+	std::cout << "Address of object: " << &guy << std::endl;
+	std::cout << "First Name: " << guy.firstName << std::endl;
+	std::cout << "Last Name: " << guy.lastName << std::endl;
+	std::cout << "Favourite Colour: " << guy.favColour << std::endl;
+	std::cout << "Age: " << guy.age << std::endl;
 	std::cout << std::endl;
-
-	NewGuy = deserialize(serialize(&Guy));
+	
+	Data *newGuy = deserialize(serialize(&guy));
 
 	std::cout << RED"--------------Testing after Serialize/Deserialize--------------" CLEAR << std::endl;
-
-	std::cout << "Address of object: " << NewGuy << std::endl;
-	std::cout << "First Name: " << (*NewGuy).firstName << std::endl;
-	std::cout << "Last Name: " << (*NewGuy).lastName << std::endl;
-	std::cout << "Favourite Colour: " << (*NewGuy).favColour << std::endl;
-	std::cout << "Age: " << (*NewGuy).age << std::endl;
+	std::cout << "Address of object: " << newGuy << std::endl;
+	std::cout << "First Name: " << (*newGuy).firstName << std::endl;
+	std::cout << "Last Name: " << (*newGuy).lastName << std::endl;
+	std::cout << "Favourite Colour: " << (*newGuy).favColour << std::endl;
+	std::cout << "Age: " << (*newGuy).age << std::endl;
 	std::cout << std::endl;
 }

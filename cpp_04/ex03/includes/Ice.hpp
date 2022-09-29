@@ -11,17 +11,16 @@ class Ice : public AMateria {
 
     public:
         /* Constructors/Destructor */
-        Ice();                                  /* Default Construtor */
-        Ice(const Ice &amateria);               /* Copy Constructor */
-        //Ice(std::string const & type);          /* Type constructor */
-    	~Ice();                                 /* Destructor */
+        Ice();
+        Ice(const Ice& other);
+    	~Ice();
 
         /* Operator Overloads */
-        Ice &operator=(const Ice &amateria);
+        Ice&    operator=(const Ice& rhs);
 
         /* Public Member Functions */
-        AMateria* clone() const;
-        void use(ICharacter& target);
+        AMateria*   clone() const;
+        void        use(ICharacter& target);
 };
 
 #endif

@@ -6,29 +6,26 @@
 #include <string>
 #include <iostream>
 
-#include "Brain.hpp"
-
 class Animal
 {
     public:
-    /* Constructors/Destructor */
-    Animal();
-    Animal(const Animal &animal);
-    virtual ~Animal();
+        /* Constructors & Destructor */
+        Animal();
+        Animal(std::string const type);
+        Animal(Animal const& other);
+        virtual ~Animal();
 
-    /* Operator Overloads */
-    Animal &operator=(const Animal &animal);
+        /* Operator Overloads */
+        Animal& operator=(Animal const& rhs);
 
-    /* Public Member Fuctions */
-    virtual void    makeSound(void) const;
+        /* Public Member Fuctions */
+        virtual void    makeSound(void) const;
 
-    /* Setters/Getters */
-    std::string getType(void) const;
-
-    private:
+        /* Setters/Getters */
+        std::string getType(void) const;
+        
     protected:
         std::string type;
 };
 
 #endif
-

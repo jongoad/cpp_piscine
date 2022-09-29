@@ -9,20 +9,21 @@
 class WrongAnimal
 {
     public:
-    /* Constructors/Destructor */
-    WrongAnimal();
-    WrongAnimal(const WrongAnimal &wronganimal);
-    virtual ~WrongAnimal();
+        /* Constructors & Destructor */
+        WrongAnimal();
+        WrongAnimal(std::string type);
+        WrongAnimal(WrongAnimal const& other);
+        virtual ~WrongAnimal();
 
-    /* Operator Overloads */
-    WrongAnimal &operator=(const WrongAnimal &wronganimal);
+        /* Operator Overloads */
+        WrongAnimal& operator=(WrongAnimal const& rhs);
 
-    /* Public Member Fuctions */
-    virtual void    makeSound(void) const;
+        /* Public Member Fuctions */
+        void    makeSound(void) const;
 
-    /* Setters/Getters */
-    std::string getType(void) const;
-    
+        /* Setters/Getters */
+        std::string getType(void) const;
+        
     protected:
         std::string type;
 };

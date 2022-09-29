@@ -3,20 +3,18 @@
 /*------------------------------*/
 /*   Constructors/Destructor    */
 /*------------------------------*/
-
-/* Default Constructor */
-Cat::Cat() {
-	this->type = "Cat";
+Cat::Cat() : Animal("Cat") {
 	std::cout << "Cat default constructor called" << std::endl;
 }
 
-/* Copy Constructor */
-Cat::Cat(const Cat &cat) {
-	*this = cat;
+Cat::Cat(std::string const type) : Animal(type) {
+	std::cout << "Cat type constructor called" << std::endl;
+}
+
+Cat::Cat(Cat const& other) : Animal(other) {
 	std::cout << "Cat copy constructor called" << std::endl;
 }
 
-/* Destructor */
 Cat::~Cat() {
 	std::cout << "Cat destructor called" << std::endl;
 }
@@ -24,26 +22,13 @@ Cat::~Cat() {
 /*------------------------------*/
 /*      Operator Overloads      */
 /*------------------------------*/
-
-Cat    &Cat::operator=(const Cat &cat) {
-	this->type = cat.type;
+Cat&	Cat::operator=(Cat const& rhs) {
 	std::cout << "Cat copy assignement operator called" << std::endl;
+	this->type = rhs.type;
 	return (*this);
 }
 
 /*------------------------------*/
-/*        Setters/Getters       */
-/*------------------------------*/
-
-/*------------------------------*/
-/*   Public Member Functions    */
-/*------------------------------*/
-
-/*------------------------------*/
 /*      Function Overrides      */
 /*------------------------------*/
-
-void	Cat::makeSound(void) const{
-	std::cout << "*Meeeeeooooowwwww*" << std::endl;
-}
-
+void	Cat::makeSound(void) const{ std::cout << "*Meeeeeooooowwwww*" << std::endl; }

@@ -1,69 +1,66 @@
-#ifndef CONVERT_HPP
-#define CONVERT_HPP
+#ifndef CONVERT_HPP_
+#define CONVERT_HPP_
 
 #pragma once
 
 #include <string>
 #include <iostream>
-#include <cmath>
+#include <iomanip>
 #include <limits>
-#include <ctype.h>
-#include <stdlib.h>
+#include <cmath>
 
-class Convert
-{
-    public:
-        /* Constructors/Destructor */
-        Convert();
-        Convert(const std::string &input);
-        Convert(const Convert &convert);
-        ~Convert();
+class Convert {
+	public:
+		/* Constructors & Destructor */
+		Convert(const std::string input);
+		Convert(const Convert& other);
+		~Convert();
 
-        /* Operator Overloads */
-        Convert &operator=(const Convert &convert);
+		/* Setters & Getters */
 
-        /* Public Member Functions */
-        void	checkInput();
-		void	printOutput(void);
-        bool	isChar(void);
-        bool	isPrintable(const char c);
-        bool	isPseudoFloat(void);
-        bool	isPseudoDouble(void);
-        bool	isFloat(void);
-        bool	isDouble(void);
-        bool	isInt(void);
+		/* Public Member Functions */
+		char	toChar() const;
+		int		toInt() const;
+		float	toFloat() const;
+		double	toDouble() const;
 
-		void	convertChar(void);
-		void	convertFloat(void);
-		void	convertDouble(void);
-		void	convertInt(void);
-
-
-        void    printConverted(void);
-
-        /* Exceptions */
-        class emptyException : public std::exception {
-            public:
-                const char *what() const throw() {
-					return ("Input string is empty!");
+		/* Exceptions */
+		class InvalidInput : public std::exception {
+			public:
+				const char *what() const throw() {
+					return ("Input string is empty or invalid!");
 				}
-        };
+		};
 
-        class invalidException : public std::exception {
-            public:
-                const char *what() const throw() {
-					return ("Input string is not valid!");
+		class NonDisplayable : public std::exception {
+			public:
+				const char *what() const throw() {
+					return ("Non displayable");
 				}
-        };
+		};
 
-    private:
-        std::string	inputString;
-		bool		isPseudo;
-		char		type;
-        char		charVal;
-        int			intVal;
-        float		floatVal;
-        double		doubleVal;
+		class ImpossibleConversion : public std::exception {
+			public:
+				const char *what() const throw() {
+					return ("Impossible conversion");
+				}
+		};
+
+	private:
+		Convert();
+		Convert& operator=(const Convert& rhs);
+		const std::string	_input;
+		char				_char;
+		int					_int;
+		float				_float;
+		double				_double;
+		enum inputType {
+			charType, 
+			intType, 
+			floatType, 
+			doubleType}		_type;
 };
+
+std::ostream& operator<<(std::ostream& os, const Convert& rhs);
 
 #endif

@@ -5,28 +5,21 @@
 /*   Constructors/Destructors   */
 /*------------------------------*/
 
-/* Default Constructor */
-// Form::Form() {
-
-// }
-/* Name constructor */
 Form::Form(const std::string& name)
 	: name(name), isSigned(false), signGrade(1), executeGrade(1) {
 		std::cout << "Form name constructor called" << std::endl;
 }
-/* Full Constructor */
+
 Form::Form(const std::string& name ,const unsigned int signgrade, const unsigned int executegrade)
 	: name(name), isSigned(false), signGrade(signgrade), executeGrade(executegrade) {
 		std::cout << "Form full constructor called" << std::endl;
 }
 
-/* Copy Constructor */
 Form::Form(const Form &form)
 	: name(form.name), isSigned(form.isSigned), signGrade(form.signGrade), executeGrade(form.executeGrade) {
 	std::cout << "Form copy constructor called" << std::endl;
 }
 
-/* Destructor */
 Form::~Form() {
 	std::cout << "Form destructor called" << std::endl;
 }
@@ -35,8 +28,8 @@ Form::~Form() {
 /*      Operator Overloads      */
 /*------------------------------*/
 
-Form    &Form::operator=(const Form &form) {
-	(void)form;
+Form    &Form::operator=(const Form &rhs) {
+	(void)rhs;
 	return (*this);
 }
 

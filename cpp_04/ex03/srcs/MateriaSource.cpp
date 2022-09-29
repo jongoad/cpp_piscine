@@ -13,8 +13,8 @@ MateriaSource::MateriaSource() {
 }
 
 /* Copy Constructor */
-MateriaSource::MateriaSource(const MateriaSource &materiasource) {
-	*this = materiasource;
+MateriaSource::MateriaSource(const MateriaSource &other) {
+	*this = other;
 	std::cout << "Character copy constructor called" << std::endl;
 }
 
@@ -30,12 +30,12 @@ MateriaSource::~MateriaSource() {
 /*------------------------------*/
 
 /* Copy Assignment Operator */
-MateriaSource	&MateriaSource::operator=(const MateriaSource &materiasource) {
+MateriaSource&	MateriaSource::operator=(const MateriaSource &rhs) {
 	std::cout << "MateriaSource copy assignment operator called" << std::endl;
 	for (int i = 0; i < 4; i++)
 		delete this->inventory[i];
 	for (int i = 0; i < 4; i++)
-		this->inventory[i] = materiasource.inventory[i]->clone();
+		this->inventory[i] = rhs.inventory[i]->clone();
 	return (*this);
 }
 
@@ -43,7 +43,7 @@ MateriaSource	&MateriaSource::operator=(const MateriaSource &materiasource) {
 /*    Public Member Functions   */
 /*------------------------------*/
 
-void MateriaSource::learnMateria(AMateria* amateria) {
+void	MateriaSource::learnMateria(AMateria* amateria) {
 /* Check if there is an available inventory slot */
 	for (int i = 0; i < 4; i++) {
 		if (!this->inventory[i]) {
@@ -56,7 +56,7 @@ void MateriaSource::learnMateria(AMateria* amateria) {
 }
 
 /* Create New Materia Based on Input String */
-AMateria* MateriaSource::createMateria(std::string const & type) {
+AMateria*	MateriaSource::createMateria(std::string const& type) {
 	for (int i = 0; i < 4; i++) {
 		if (this->inventory[i] && (this->inventory[i]->getType() == type)) {
 			AMateria *tmp = this->inventory[i]->clone();

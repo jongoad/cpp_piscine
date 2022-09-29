@@ -1,7 +1,7 @@
 #--------------------------------#
 #    Name and file information   #
 #--------------------------------#
-NAME			:= convert
+NAME			:= type
 
 
 CPP_FILES		:= main.cpp Base.cpp
@@ -25,7 +25,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 #--------------------------------#
 #  Compiler settings and flags   #
 #--------------------------------#
-CC				= g++
+CC				= c++
 RM				= rm -rf
 CFLAGS			= -Wall -Wextra -Werror -Wshadow -Wno-shadow -std=c++98 -I./includes
 

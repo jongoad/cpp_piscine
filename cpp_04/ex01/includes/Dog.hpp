@@ -4,23 +4,27 @@
 #pragma once
 
 #include "../includes/Animal.hpp"
+#include "../includes/Brain.hpp"
 
 class Dog : public Animal{
     public:
-    /* Constructors/Destructor */
-    Dog();
-    Dog(const Dog &dog);
-    ~Dog();
+        /* Constructors & Destructor */
+        Dog();
+        Dog(std::string const type);
+        Dog(Dog const& dog);
+        virtual ~Dog();
 
-    /* Operator Overloads */
-    Dog &operator=(const Dog &dog);
+        /* Operator Overloads */
+        Dog& operator=(Dog const& rhs);
 
-    /* Function Overrides */
-    void    makeSound(void) const;
+        /* Function Overrides */
+        void    makeSound(void) const;
 
-    private:
-        Brain   *myBrain;
-    protected:
+        /* Setters & Getters */
+        Brain*   getBrain(void);
+
+        private: 
+            Brain *brain;
 };
 
 #endif

@@ -3,257 +3,192 @@
 /*------------------------------*/
 /*   Constructors/Destructor    */
 /*------------------------------*/
+Convert::Convert(const std::string input) : _input(input) {
+	if (input.empty())
+		throw Convert::InvalidInput();
+	else if (input.size() == 1) {
+		if (isdigit(_input.front()))
+			this->_int = static_cast<int>(strtol(input.c_str(), NULL, 10));
+		else
+			this->_char = input.front();
+			this->_type = charType;
+	}
+	else {
+		char	*longRemain;														/* Get remainder of string after long */
+		long	longPart = strtol(input.c_str(), &longRemain, 10);					/* Store long value created by strtol */
+		char	*decimalRemain;														/* Get remainder of string after float */
+		double	doublePart = strtod(input.c_str(), &decimalRemain);					/* Store float value created by strtof */
 
-/* Default Constructor */
-Convert::Convert() {
-}
-
-Convert::Convert(const std::string &input) : inputString(input){
-	this->isPseudo = false;
-	try {
-		this->checkInput();
-		switch (this->type) {
-		case 'c':
-			this->convertChar();
-			break;
-		case 'f':
-			this->convertFloat();
-			break;
-		case 'd':
-			this->convertDouble();
-			break;
-		case 'i':
-			this->convertInt();
-			break;
-		default:
-			break;
+		if (*longRemain) {															/* If anything remains in string after long */
+			if (*decimalRemain)	{													/* If anything remains in string after float, check if 'f' char */
+				if (*decimalRemain == 'f') {
+					this->_float = static_cast<float>(doublePart);
+					this->_type = floatType;
+				}
+				else																/* If not 'f' char then throw exception */
+					throw Convert::InvalidInput();
+			}
+			else {																	/* If no remain, set double val */
+				this->_double = doublePart;
+				this->_type = doubleType;
+			}
 		}
-		this->printOutput();
+		else {																		/* If no decimal part, check long value */	
+			if (longPart > std::numeric_limits<int>::max()							/* If out of int limit range, throw exception */
+				|| longPart < std::numeric_limits<int>::min())
+				throw Convert::InvalidInput();
+			else
+				this->_int = static_cast<int>(longPart);
+				this->_type = intType;
+		}
 	}
-	catch (const std::exception &e) {
-		std::cerr << e.what() << std::endl;
-	}
 }
 
-/* Copy Constructor */
-Convert::Convert(const Convert &convert) {
-	*this = convert;
-}
-
-/* Destructor */
-Convert::~Convert() {
-}
-
-/*------------------------------*/
-/*       Operator Overloads     */
-/*------------------------------*/
-
-Convert    &Convert::operator=(const Convert &convert) {
-	this->inputString = convert.inputString;
-	this->type = convert.type;
-	this->charVal = convert.charVal;
-	this->floatVal = convert.floatVal;
-	this->doubleVal = convert.doubleVal;
-	this->intVal = convert.intVal;
-	return (*this);
-}
-
-/*------------------------------*/
-/*       Setters/Getters        */
-/*------------------------------*/
+Convert::Convert(const Convert& other) : _input(other._input) { *this = other; }
+Convert::~Convert() {}
 
 /*------------------------------*/
 /*   Public Member Functions    */
 /*------------------------------*/
 
-/* Check input and convert to proper type */
-void	Convert::checkInput(void) {
-	if (this->inputString.empty())							/* Check empty string */
-		throw Convert::emptyException();
-	else if (this->isChar())								/* Check if single char */
-		this->type = 'c';
-	else if (this->isPseudoDouble() || this->isDouble())	/* Check if pseudo double or double match */
-		this->type = 'd';
-	else if (this->isPseudoFloat() || this->isFloat())		/* Check if pseudo float or float match */
-		this->type = 'f';
-	else if (this->isInt())									/* Check if int match */
-		this->type = 'i';
-	else
-		throw Convert::invalidException();
-}
+char	Convert::toChar() const {
+	char c;
+	switch (this->_type) {
+		case charType:
+			return this->_char;
+		case intType:
+			c = static_cast<char>(this->_int);
+			if (!isprint(c))
+				throw Convert::NonDisplayable();
+			else
+				return (c);
+		case floatType:
+			c = static_cast<float>(this->_float);
+			if (isnan(this->_float) || isinf(this->_float) 
+				|| this->_float > std::numeric_limits<char>::max()
+				|| this->_float < std::numeric_limits<char>::min())
+				throw Convert::ImpossibleConversion();
+			else if (!isprint(c))
+				throw Convert::NonDisplayable();
+			else
+				return (c);
+		case doubleType:
+			c = static_cast<float>(this->_double);
+			if (isnan(this->_double) || isinf(this->_double) 
+				|| this->_double > std::numeric_limits<char>::max()
+				|| this->_double < std::numeric_limits<char>::min())
+				throw Convert::ImpossibleConversion();
+			else if (!isprint(c))
+				throw Convert::NonDisplayable();
+			else
+				return (c);
 
-void	Convert::printOutput(void) {
-	/* Print char */
-	std::cout << "char: ";
-	if (this->isPseudo)
-		std::cout << "Impossible conversion" << std::endl;
-	else if (this->isPrintable(this->charVal))
-		std::cout << "\'" << this->charVal << "\'" << std::endl;
-	else
-		std::cout << "Not a printable char" << std::endl;
+		default:
+			break;
 
-	/* Print int */
-	std::cout << "int: ";
-	if (this->isPseudo)
-		std::cout << "Impossible conversion" << std::endl;
-	else
-		std::cout << this->intVal << std::endl;
-	
-	/* Print float */
-	std::cout << "float: " << this->floatVal << "f" << std::endl;
-
-	/* Print double */
-	std::cout << "double: " << this->doubleVal << std::endl;	
-}
-
-/* Check if a character belongs to the printable set */
-bool    Convert::isPrintable(const char c) {
-	if (c >= 32 && c <= 125)
-		return (true);
-	else
-		return (false);
-}
-
-/* Check if string contains a single char */
-bool	Convert::isChar(void) {
-	if (this->inputString.length() == 1 && !isdigit(this->inputString.front())) {
-		this->charVal = this->inputString.front();
-		return (true);
 	}
-	return (false);
 }
 
+int		Convert::toInt() const {
+	switch (this->_type) {
+		case charType:
+			return (static_cast<int>(this->_char));
+		case intType:
+			return (this->_int);
+		case floatType:
+			if (isnan(this->_float) || isinf(this->_float) 
+				|| this->_float > std::numeric_limits<int>::max()
+				|| this->_float < std::numeric_limits<int>::min())
+				throw Convert::ImpossibleConversion();
+			else
+				return (static_cast<int>(this->_float));
+		case doubleType:
+			if (isnan(this->_double) || isinf(this->_double) 
+				|| this->_double > std::numeric_limits<int>::max()
+				|| this->_double < std::numeric_limits<int>::min())
+				throw Convert::ImpossibleConversion();
+			else
+				return (static_cast<int>(this->_double));
+		default:
+			break;
 
-/* Check if input is a pseudo float literal value */
-bool	Convert::isPseudoFloat(void) {
-	std::string pseudo[] = {"-inff", "+inff", "nanf"};
-	for (int i = 0; i < 3; i++) {
-		if (this->inputString == pseudo[i]) {
-			switch (i) {
-				case 0:
-					this->floatVal = -INFINITY;
-					break;
-				case 1:
-					this->floatVal = INFINITY;
-					break;
-				case 2:
-					this->floatVal = NAN;
-					break;
-				default:
-					break;
-			}
-			this->isPseudo = true;
-			return (true);
-		}
 	}
-	return (false);
 }
-/* Check if input is a pseudo double literal value */
-bool	Convert::isPseudoDouble(void) {
-	std::string pseudo[] = {"-inf", "+inf", "nan"};
-	for (int i = 0; i < 3; i++) {
-		if (this->inputString == pseudo[i]) {
-			switch (i) {
-				case 0:
-					this->doubleVal = -INFINITY;
-					break;
-				case 1:
-					this->doubleVal = INFINITY;
-					break;
-				case 2:
-					this->doubleVal = NAN;
-					break;
-				default:
-					break;
-			}
-			this->isPseudo = true;
-			return (true);
-		}
+
+float	Convert::toFloat() const {
+	switch (this->_type) {
+		case charType:
+			return (static_cast<float>(this->_char));
+		case intType:
+			return (static_cast<float>(this->_int));
+		case floatType:
+			return (this->_float);
+		case doubleType:
+			return (static_cast<float>(this->_double));
+		default:
+			break;
 	}
-	return (false);
 }
 
-/* Check if input is a valid float */
-bool    Convert::isFloat(void) {
-	int invalid = this->inputString.find_first_not_of("-+0123456789.fF");
-	if (invalid != -1)																			/* Check for invalid chars */
-		return (false);
-	else if (std::count(this->inputString.begin(), this->inputString.end(), '.') > 1)			/* Check for duplicate periods */
-		return (false);
-	else if (std::count(this->inputString.begin(), this->inputString.end(), '-') > 1)			/* Check for duplicate negative */
-		return (false);
-	else if (std::count(this->inputString.begin(), this->inputString.end(), '+') > 1)			/* Check for duplicate positive */
-		return (false);
-	else if ((this->inputString.front() == '-' || this->inputString.front() == '+')				/* Check for duplicate signs */
-		&& (!isdigit(this->inputString[1]) && this->inputString[1] != '.'))
-		return (false);
-	else if ((this->inputString.back() == 'f' || this->inputString.back() == 'F')				/* Check for extra alpha chars */
-		&& isalpha(this->inputString[this->inputString.length() - 2]))
-		return (false);
-	char *ptr;
-	this->floatVal = strtof(this->inputString.c_str(), &ptr);
-	return (true);
+double	Convert::toDouble() const {
+	switch (this->_type) {
+		case charType:
+			return (static_cast<float>(this->_char));
+		case intType:
+			return (static_cast<float>(this->_int));
+		case floatType:
+			return (static_cast<double>(this->_float));
+		case doubleType:
+			return (this->_double);
+		default:
+			break;
+	}
 }
 
-/* Check if input is a valid double */
-bool	Convert::isDouble(void) {
-	int invalid = this->inputString.find_first_not_of("-+0123456789.");
-	if (invalid != -1)																			/* Check for invalid chars */
-		return (false);
-	else if (std::count(this->inputString.begin(), this->inputString.end(), '.') > 1)			/* Check for duplicate periods */
-		return (false);
-	else if (std::count(this->inputString.begin(), this->inputString.end(), '-') > 1)			/* Check for duplicate negative */
-		return (false);
-	else if (std::count(this->inputString.begin(), this->inputString.end(), '+') > 1)			/* Check for duplicate positive */
-		return (false);
-	else if ((this->inputString.front() == '-' || this->inputString.front() == '+')				/* Check for duplicate signs */
-		&& (!isdigit(this->inputString[1]) && this->inputString[1] != '.'))
-		return (false);
-	char *ptr;
-	this->doubleVal = strtod(this->inputString.c_str(), &ptr);
-	return (true);
-}
 
-/* Check if input is a valid int */
-bool	Convert::isInt(void) {
-	int invalid = this->inputString.find_first_not_of("-+0123456789");
-	if (invalid != -1)																			/* Check for invalid chars */
-		return (false);
-	else if (std::count(this->inputString.begin(), this->inputString.end(), '-') > 1)			/* Check for duplicate negative */
-		return (false);
-	else if (std::count(this->inputString.begin(), this->inputString.end(), '+') > 1)			/* Check for duplicate positive */
-		return (false);
-	else if ((this->inputString.front() == '-' || this->inputString.front() == '+')				/* Check for duplicate signs */
-		&& (!isdigit(this->inputString[1]) && this->inputString[1] != '.'))
-		return (false);
-	this->intVal = atoi(this->inputString.c_str());
-	return (true);
-}
+/*------------------------------*/
+/*       Operator Overloads     */
+/*------------------------------*/
+Convert&	Convert::operator=(const Convert& rhs) { (void)rhs; return (*this); }
 
-/* Convert from char */
-void	Convert::convertChar(void) {
-	this->floatVal = static_cast<float>(this->charVal);
-	this->doubleVal = static_cast<double>(this->charVal);
-	this->intVal = static_cast<int>(this->charVal);
-}
-
-/* Convert from float */
-void	Convert::convertFloat(void) {
-	this->doubleVal = static_cast<double>(this->floatVal);
-	this->charVal = static_cast<char>(this->floatVal);
-	this->intVal = static_cast<int>(this->floatVal);
-}
-
-/* Convert from double */
-void	Convert::convertDouble(void) {
-	this->charVal = static_cast<char>(this->doubleVal);
-	this->floatVal = static_cast<float>(this->doubleVal);
-	this->intVal = static_cast<int>(this->doubleVal);
-}
-
-/* Convert from int */
-void	Convert::convertInt(void) {
-	this->charVal = static_cast<char>(this->intVal);
-	this->floatVal = static_cast<float>(this->intVal);
-	this->doubleVal = static_cast<double>(this->intVal);
+std::ostream& operator<<(std::ostream& os, const Convert& rhs) {
+	os << "char: ";
+	try {
+		char c = rhs.toChar();
+		os << "'" << c << "'" << std::endl;
+	}
+	catch (const std::exception& e) {
+		os << e.what() << std::endl;
+	}
+	os << "int: ";
+	try {
+		int i = rhs.toInt();
+		os << i << std::endl;
+	}
+	catch (const std::exception& e) {
+		os << e.what() << std::endl;
+	}
+	os << "float: ";
+	try {
+		float f = rhs.toFloat();
+		double whole;
+		if (modf(f, &whole) == 0)
+			os.precision(1);
+		os << std::fixed <<  f << "f" << std::endl;
+	}
+	catch (const std::exception& e) {
+		os << e.what() << std::endl;
+	}
+	os << "double: ";
+	try {
+		double d = rhs.toDouble();
+		double whole;
+		if (modf(d, &whole) == 0)
+			os.precision(1);
+		os << std::fixed << d << std::endl;
+	}
+	catch (const std::exception& e) {
+		os << e.what() << std::endl;
+	}
+	return (os);
 }

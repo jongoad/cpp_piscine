@@ -1,17 +1,13 @@
 #include "../includes/Convert.hpp"
 
-#define RED "\033[1;31m"
-#define CLEAR "\033[0m"
-
-
-
-
-int	main(int argc, char **argv) {
-	if (argc == 1)
-		std::cout << "No string entered" << std::endl;
-	else {
-		Convert Converter(argv[1]);
+int main(int argc, char **argv) {
+	try {
+		if (argc != 2)
+			throw Convert::InvalidInput();
+		Convert converter(argv[1]);
+		std::cout << converter;
 	}
-	
-	return (0);
+	catch (const std::exception& e) {
+		std::cout << e.what() << std::endl;
+	}
 }

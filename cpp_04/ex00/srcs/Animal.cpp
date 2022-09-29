@@ -4,19 +4,19 @@
 /*    Constructors/Destructor   */
 /*------------------------------*/
 
-/* Default Constructor */
-Animal::Animal() {
-	this->type = "Ambiguous Animal";
+Animal::Animal() : type("Ambiguous Animal") {
 	std::cout << "Animal default constructor called" << std::endl;
 }
 
-/* Copy Constructor */
-Animal::Animal(const Animal &animal) {
-	*this = animal;
+Animal::Animal(std::string const type) : type(type) {
+	std::cout << "Animal type constructor called" << std::endl; 
+}
+
+Animal::Animal(const Animal &other) {
+	*this = other;
 	std::cout << "Animal copy constructor called" << std::endl;
 }
 
-/* Destructor */
 Animal::~Animal() {
 	std::cout << "Animal destructor called" << std::endl;
 }
@@ -25,8 +25,8 @@ Animal::~Animal() {
 /*     Operator Overloads       */
 /*------------------------------*/
 
-Animal	&Animal::operator=(const Animal &animal) {
-	this->type = animal.type;
+Animal& Animal::operator=(Animal const& rhs) {
+	this->type = rhs.type;
 	std::cout << "Animal copy assignment operator called" << std::endl;
 	return (*this);
 }
@@ -36,13 +36,9 @@ Animal	&Animal::operator=(const Animal &animal) {
 /*------------------------------*/
 
 /* Get animal type */
-std::string	Animal::getType(void) const{
-	return(this->type);
-}
+std::string	Animal::getType(void) const{ return(this->type); }
 
 /*------------------------------*/
 /*   Public Member Functions    */
 /*------------------------------*/
-void	Animal::makeSound(void) const{
-	std::cout << "*Default animal noise*" << std::endl;
-}
+void	Animal::makeSound(void) const{ std::cout << "*Default animal noise*" << std::endl; }

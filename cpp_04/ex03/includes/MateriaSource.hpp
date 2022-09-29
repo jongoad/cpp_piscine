@@ -6,20 +6,19 @@
 #include "IMateriaSource.hpp"
 
 
-class MateriaSource : public IMateriaSource
-{
+class MateriaSource : public IMateriaSource {
     public:
 		/* Constructors/Destructor */
-		MateriaSource();												/* Default Constructor */
-		MateriaSource(const MateriaSource &materiasource);				/* Copy constructor */
-		~MateriaSource();												/* Destructor */
+		MateriaSource();
+		MateriaSource(const MateriaSource& other);
+		~MateriaSource();
 
 		/* Operator Overloads */
-		MateriaSource &operator=(const MateriaSource &materiasource);	/* Copy assignement operator */
+		MateriaSource&	operator=(const MateriaSource &rhs);
 
 		/* Public Member Functions */
-		void learnMateria(AMateria* amateria);
-		AMateria* createMateria(std::string const & type);
+		void		learnMateria(AMateria* amateria);
+		AMateria*	createMateria(std::string const& type);
 
 	private:
 		AMateria *inventory[4];

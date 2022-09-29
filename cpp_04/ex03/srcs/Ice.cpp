@@ -11,15 +11,9 @@ Ice::Ice() : AMateria("ice") {
 }
 
 /* Copy Constructor */
-Ice::Ice(const Ice &amateria) : AMateria(amateria) {
+Ice::Ice(const Ice& other) : AMateria(other) {
 	std::cout << "Ice copy constructor called" << std::endl;
 }
-
-// /* Type Constructor */
-// Ice::Ice(std::string const &type) {
-// 	this->type = type;
-// 	std::cout << "Ice type constructor called" << std::endl;
-// }
 
 /* Destructor */
 Ice::~Ice() {
@@ -30,25 +24,21 @@ Ice::~Ice() {
 /*     Operator Overloads       */
 /*------------------------------*/
 
-Ice    &Ice::operator=(const Ice &amateria) {
-	this->AMateria::operator=(amateria);
+Ice&	Ice::operator=(const Ice& rhs) {
 	std::cout << "Ice copy assignment operator called" << std::endl;
+	this->AMateria::operator=(rhs);
 	return (*this);
 }
-
-/*------------------------------*/
-/*        Setters/Getters       */
-/*------------------------------*/
 
 /*------------------------------*/
 /*    Public Member Functions   */
 /*------------------------------*/
 
-AMateria* Ice::clone() const{
+AMateria*	Ice::clone() const{
 	AMateria *clone = new Ice();
 	return (clone);
 }
 
-void Ice::use(ICharacter& target) {
+void	Ice::use(ICharacter& target) {
 	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }

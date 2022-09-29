@@ -1,52 +1,45 @@
 #include "../includes/Dog.hpp"
 
 /*------------------------------*/
-/*   Constructors/Destructor    */
+/*  Constructors & Destructor   */
 /*------------------------------*/
-
-/* Default Constructor */
-Dog::Dog() {
-	this->type = "Dog";
+Dog::Dog() : Animal ("Dog"), brain(new Brain()) {
 	std::cout << "Dog default constructor called" << std::endl;
-	this->myBrain = new Brain();
 }
 
-/* Copy Constructor */
-Dog::Dog(const Dog &dog) {
-	*this = dog;
+Dog::Dog(std::string const type) : Animal(type), brain(new Brain()) {
+	std::cout << "Dog type constructor called" << std::endl;
+}
+
+Dog::Dog(Dog const& other) : Animal(other) {
 	std::cout << "Dog copy constructor called" << std::endl;
+	this->brain = new Brain(*other.brain);
 }
 
-/* Destructor */
 Dog::~Dog() {
-	delete this->myBrain;
 	std::cout << "Dog destructor called" << std::endl;
+	delete this->brain;
 }
 
 /*------------------------------*/
 /*     Operator Overloads       */
 /*------------------------------*/
-
-Dog    &Dog::operator=(const Dog &dog) {
-	this->type = dog.type;
-	this->myBrain = new Brain(*dog.myBrain);
+Dog&	Dog::operator=(Dog const& rhs) {
 	std::cout << "Dog copy assignment operator called" << std::endl;
+	this->type = rhs.type;
+	if (this->brain)
+		delete this->brain;
+	this->brain = new Brain(*rhs.brain);
 	return (*this);
 }
 
 /*------------------------------*/
-/*       Setters/Getters        */
-/*------------------------------*/
-
-/*------------------------------*/
-/*   Public Member Functions    */
-/*------------------------------*/
-
-/*------------------------------*/
 /*      Function Overrides      */
 /*------------------------------*/
+void	Dog::makeSound(void) const{ std::cout << "*Bark Bark*" << std::endl; }
 
-void	Dog::makeSound(void) const{
-	std::cout << "*Bark Bark*" << std::endl;
-}
 
+/*------------------------------*/
+/*       Setters & Getters      */
+/*------------------------------*/
+Brain*	Dog::getBrain(void) { return (this->brain); }

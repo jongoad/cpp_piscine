@@ -32,9 +32,9 @@ class Form
  
 		
 		/* Public Member Functions */
-		void	beSigned(const Bureaucrat& input);
+		void	        beSigned(const Bureaucrat& input);
         virtual void    doAction(const Bureaucrat& input) const = 0;
-        void    execute(const Bureaucrat& input) const;
+        void            execute(const Bureaucrat& input) const;
 
         /* Exceptions */
         class gradeLowException : public std::exception {

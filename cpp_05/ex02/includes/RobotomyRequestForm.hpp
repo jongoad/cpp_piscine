@@ -13,17 +13,16 @@ class RobotomyRequestForm : public Form
 {
     public:
         /* Constructors/Destructors */
-		RobotomyRequestForm(const std::string& target);																	/* Target Constructor */
-        RobotomyRequestForm(const RobotomyRequestForm &other);                                                       /* Copy constructor */
-        ~RobotomyRequestForm();                                                                                        /* Destructor */
+		RobotomyRequestForm(const std::string& target);
+        RobotomyRequestForm(const RobotomyRequestForm& other);
+        ~RobotomyRequestForm();
 
         /* Operator Overloads */
-        RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
-
-        /* Setters/Getters */
+        RobotomyRequestForm &operator=(const RobotomyRequestForm& rhs);
 
 		/* Public Member Functions */
         void    doAction(const Bureaucrat& input) const;
+
     private:
         RobotomyRequestForm();
 };

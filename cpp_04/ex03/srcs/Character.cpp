@@ -6,69 +6,46 @@
 /*------------------------------*/
 /*   Constructors/Destructor    */
 /*------------------------------*/
-
-/* Default Constructor */
 Character::Character() {
 	for (int i = 0; i < 4; i++)				/* Set inventory to empty at start */
-		this->inventory[i] = NULL;
+		this->inventory[i] = nullptr;
 	this->name = "Joe Smith";
-	this->numberDiscarded = 0;
-	this->discard = NULL;
 	std::cout << "Character default constructor called" << std::endl;
 }
 
-/* Name Constructor */
-Character::Character(const std::string &name) {
+Character::Character(const std::string& name) {
 	for (int i = 0; i < 4; i++)				/* Set inventory to empty at start */
 		this->inventory[i] = NULL;
-	this->numberDiscarded = 0;
-	this->discard = NULL;
 	this->name = name;
 	std::cout << "Character name constructor called" << std::endl;
 }
 
-/* Copy Constructor */
-Character::Character(const Character &character) {
-	*this = character;
+Character::Character(const Character& other) {
+	*this = other;
 	std::cout << "Character copy constructor called" << std::endl;
 }
 
-/* Destructor */
 Character::~Character() {
 	std::cout << "Character destructor called" << std::endl;
-	for (int i = 0; i < this->numberDiscarded; i++)
-		delete this->discard[i];
-	for (int i = 0; i < 4; i++)
-		delete this->inventory[i];
+	for (int i = 0; i < 4; i++) { delete this->inventory[i]; }
 }
 
 /*------------------------------*/
 /*     Operator Overloads       */
 /*------------------------------*/
 
-Character	&Character::operator=(const Character &character) {
+Character	&Character::operator=(const Character& rhs) {
 	std::cout << "Character copy assignment operator called" << std::endl;
 	/* Copy non-allocated data */
-	this->name = character.getName();		/* Set name */
-	this->numberDiscarded = character.numberDiscarded;
+	this->name = rhs.getName();
 
 	/* Delete any stored invetory and discards */
 	for (int i = 0; i < 4; i++)
 		delete this->inventory[i];
-	for (int i = 0; i < this->numberDiscarded; i++)
-		delete this->discard[i];
-
 	/* Deep copy inventory */
 	for (int i = 0; i < 4; i++)
-		this->inventory[i] = character.inventory[i]->clone();
-
-	/* Deep copy discards */
-	AMateria *tmp[character.numberDiscarded];
-	for (int i = 0; i < character.numberDiscarded; i++)
-		tmp[i] = character.discard[i]->clone();
-	this->discard = tmp;
+		this->inventory[i] = rhs.inventory[i]->clone();
 	return (*this);
-
 }
 
 /*------------------------------*/
@@ -97,15 +74,8 @@ void Character::equip(AMateria* m) {
 /* Unequip an ability */
 void Character::unequip(int idx) {
 	if (this->inventory[idx]) {
-		AMateria *tmp[this->numberDiscarded + 1];				/* Create new array for discards */
-		if (this->discard) {									/* If anything already discarded, copy to tmp array */
-			for (int i = 0; i < this->numberDiscarded; i++)		/* Copy existing discards */
-				tmp[i] = this->discard[i];
-		}
-		tmp[this->numberDiscarded] = this->inventory[idx];		/* Copy new discard */
-		this->discard= tmp;							   		 	/* Assign new discard array */ 
-		this->inventory[idx] = NULL;							/* Set cleared inventory slot to NULL */
-		this->numberDiscarded++;								/* Increment number discarded */
+		this->inventory[idx] = nullptr;
+		std::cout << "Ability in inventory slot " << idx << " has been unequipped." << std::endl;
 	}
 	else
 		std::cout << "Inventory slot " << idx << " is already empty!" << std::endl;

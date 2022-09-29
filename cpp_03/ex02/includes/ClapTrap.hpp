@@ -37,7 +37,7 @@ class ClapTrap
 		int			getAttackDamage(void) const;
 		void		setAttackDamage(int const amount);
 
-	private:
+	protected:
 		/* Private Attributes */
 		std::string	name;
 		int			hitPoints;

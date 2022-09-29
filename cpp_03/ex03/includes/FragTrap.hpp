@@ -24,7 +24,7 @@ class FragTrap : virtual public ClapTrap {
 		/* Function Overrides */
 		void	attack(std::string const& target);
 
-	private:
+	protected:
 };
 
 

@@ -3,8 +3,6 @@
 /*------------------------------*/
 /*    Constructors/Destructor   */
 /*------------------------------*/
-
-/* Default Constructor */
 Brain::Brain() {
 	std::cout << "Brain default constructor called" << std::endl;
 	for (int i = 0; i < 100; i++) {
@@ -17,13 +15,11 @@ Brain::Brain() {
 	}
 }
 
-/* Copy Constructor */
-Brain::Brain(const Brain &brain) {
-	*this = brain;
+Brain::Brain(Brain const& other) {
 	std::cout << "Brain copy constructor called" << std::endl;
+	for (int i = 0; i < 100; i++) { this->ideas[i] = other.ideas[i]; }
 }
 
-/* Destructor */
 Brain::~Brain() {
 	std::cout << "Brain destructor called" << std::endl;
 }
@@ -31,28 +27,14 @@ Brain::~Brain() {
 /*------------------------------*/
 /*     Operator Overloads       */
 /*------------------------------*/
-
-Brain    &Brain::operator=(const Brain &brain) {
-	for (int i = 0; i < 100; i++) {
-		this->ideas[i] = brain.ideas[i];
-	}
+Brain&	Brain::operator=(Brain const& rhs) {
 	std::cout << "Brain copy assignment operator called" << std::endl;
+	for (int i = 0; i < 100; i++) { this->ideas[i] = rhs.ideas[i]; }
 	return (*this);
 }
 
 /*------------------------------*/
 /*       Setters/Getters        */
 /*------------------------------*/
-
-std::string Brain::getIdea(int i) const {
-	return(this->ideas[i]);
-}
-
-void	Brain::setIdea(int i, std::string idea) {
-	this->ideas[i] = idea;
-}
-
-/*------------------------------*/
-/*   Public Member Functions    */
-/*------------------------------*/
-
+std::string Brain::getIdea(int const i) const { return(this->ideas[i]); }
+void	Brain::setIdea(int i, std::string idea) { this->ideas[i] = idea; }

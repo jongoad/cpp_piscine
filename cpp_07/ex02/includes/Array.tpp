@@ -17,13 +17,13 @@ Array<T>::~Array(void) {
 
 /* Copy assigment operator overlaod */
 template <class T>
-Array<T>&	Array<T>::operator=(const Array& other) {
-	if (this != &other) {
+Array<T>&	Array<T>::operator=(const Array& rhs) {
+	if (this != &rhs) {
 		this->~Array();
-		this->num = other.num;
+		this->num = rhs.num;
 		this->arr = new T[this->num];
 		for (unsigned int i = 0; i < this->num; i++)
-			this->arr[i] = other.arr[i];
+			this->arr[i] = rhs.arr[i];
 	}
 	return (*this);
 }
