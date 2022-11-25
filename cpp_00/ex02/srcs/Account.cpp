@@ -9,6 +9,7 @@ int	Account::t::_totalAmount;
 int	Account::t::_totalNbDeposits;
 int	Account::t::_totalNbWithdrawals;
 
+//What is this second constructor used for?
 void	Account(void) {
 }
 
@@ -24,6 +25,8 @@ Account::Account(int initial_deposit) {
 	std::cout << "index:" << this->_accountIndex << ";";
 	std::cout << "amount:" << this->_amount << ";";
 	std::cout << "created" << std::endl;
+
+	//How to set account index??
 }
 
 /* Destructor */
@@ -33,6 +36,8 @@ Account::~Account() {
 	std::cout << "amount:" << this->_amount << ";";
 	std::cout << "closed" << std::endl;
 }
+
+/* Static Functions */
 
 /* Get number of open accounts */
 int	Account::t::getNbAccounts( void ) {
@@ -60,7 +65,7 @@ void	Account::displayAccountsInfos( void ) {
 	std::cout << "accounts:" << Account::getNbAccounts() << ";";
 	std::cout << "total:" << Account::getTotalAmount() << ";";
 	std::cout << "deposits:" << Account::getNbDeposits() << ";";
-	std::cout << "withdrawals:" << Account::getNbWithdrawals() << std::endl;
+	std::cout << "withdrawals:" << Account::getNbWithdrawals() << ";" << std::endl;
 }
 
 /* Display timestamp followed by space (no newline) */
@@ -84,7 +89,7 @@ void	Account::makeDeposit( int deposit ) {
 	this->_nbDeposits++;
 	Account::_totalNbDeposits++;
 	std::cout << "amount:" << this->_amount << ";";
-	std::cout << "nb_deposits:" << this->_nbDeposits << std::endl;
+	std::cout << "nb_deposits:" << this->_nbDeposits << ";" << std::endl;
 }
 
 /* Accessor function to make a withdrawal */
@@ -103,7 +108,7 @@ bool	Account::makeWithdrawal( int withdrawal ) {
 	this->_nbWithdrawals++;
 	Account::_totalNbWithdrawals++;
 	std::cout << "amount:" << this->_amount << ";";
-	std::cout << "nb_withdrawals:" << this->_nbWithdrawals << std::endl;
+	std::cout << "nb_withdrawals:" << this->_nbWithdrawals << ";" << std::endl;
 	return (true);
 }
 
@@ -118,5 +123,5 @@ void	Account::displayStatus( void ) const {
 	std::cout << "index:" << this->_accountIndex << ";";
 	std::cout << "amount:" << this->_amount << ";";
 	std::cout << "deposits:" << this->_nbDeposits << ";";
-	std::cout << "withdrawals:" << this->_nbWithdrawals << std::endl;
+	std::cout << "withdrawals:" << this->_nbWithdrawals << ";" << std::endl;
 }

@@ -15,7 +15,7 @@ class ClapTrap
 		ClapTrap();
 		ClapTrap(std::string const name);
 		ClapTrap(ClapTrap const& other);
-		virtual ~ClapTrap();
+		~ClapTrap();
 
 		/* Operator Overloads */
 		ClapTrap&	operator=(ClapTrap const& rhs);
@@ -37,7 +37,7 @@ class ClapTrap
 		int			getAttackDamage(void) const;
 		void		setAttackDamage(int const amount);
 
-	protected:
+	private:
 		/* Private Attributes */
 		std::string	name;
 		int			hitPoints;

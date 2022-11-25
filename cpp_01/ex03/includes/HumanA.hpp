@@ -3,6 +3,9 @@
 
 #pragma once
 
+#include <iostream>
+#include <string>
+
 #include "Weapon.hpp"
 
 class HumanA {

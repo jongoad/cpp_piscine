@@ -29,6 +29,9 @@ void	Harl::complain(std::string level) {
 	};
 
 	int i;
+	
+	// int test = Harl::getLevel(level);
+	// std::cout << std::endl << test << std::endl;
 	switch (Harl::getLevel(level)) {
 		case (Harl::filterLevel (filterDebug)):
 			i = 0;
@@ -58,7 +61,7 @@ void	Harl::complain(std::string level) {
 
 /* Public Member Functions */
 /* Return the enum for filter level based on input string */
-Harl::filterLevel Harl::getLevel(std::string level) const{
+Harl::filterLevel Harl::getLevel(std::string level) {
 	std::string complaintLevels[] = {
 		"DEBUG",
 		"INFO",

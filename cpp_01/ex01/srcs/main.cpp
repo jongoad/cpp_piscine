@@ -1,5 +1,4 @@
 #include "../includes/Zombie.hpp"
-#include "../includes/Zombie.h"
 
 #define RED "\033[1;31m"
 #define CLEAR "\033[0m"

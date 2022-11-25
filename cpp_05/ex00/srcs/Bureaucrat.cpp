@@ -3,8 +3,13 @@
 /*------------------------------*/
 /*   Constructors/Destructor    */
 /*------------------------------*/
-Bureaucrat::Bureaucrat() : name("default") { std::cout << "Bureaucrat default constructor called" << std::endl; }
 
+/* Default Constructor */
+Bureaucrat::Bureaucrat() {
+	std::cout << "Bureaucrat default constructor called" << std::endl;
+}
+
+/* Name & Grade Constructor */
 Bureaucrat::Bureaucrat(const std::string name, unsigned int grade) : name(name) {
 	std::cout << "Bureaucrat name & grade constructor called" << std::endl;
 	if (grade < 1)
@@ -15,12 +20,16 @@ Bureaucrat::Bureaucrat(const std::string name, unsigned int grade) : name(name) 
 		this->grade = grade;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& other) : name(other.getName()) {
+/* Copy Constructor */
+Bureaucrat::Bureaucrat(const Bureaucrat& other) {
 	std::cout << "Bureaucrat copy constructor called" << std::endl;
 	*this = other;
 }
 
-Bureaucrat::~Bureaucrat() { std::cout << "Bureaucrat destructor called" << std::endl; }
+/* Destructor */
+Bureaucrat::~Bureaucrat() {
+	std::cout << "Bureaucrat destructor called" << std::endl;
+}
 
 /*------------------------------*/
 /*      Operator Overloads      */
@@ -29,7 +38,8 @@ Bureaucrat::~Bureaucrat() { std::cout << "Bureaucrat destructor called" << std::
 /* Assignment operator overload */
 Bureaucrat    &Bureaucrat::operator=(const Bureaucrat& rhs) {
 	std::cout << "Bureaucrat copy assignment operator called" << std::endl;
-	(void)rhs;
+	this->name = rhs.name;
+	this->grade = rhs.grade;
 	return (*this);
 }
 
@@ -43,11 +53,15 @@ std::ostream&	operator<<(std::ostream& os, const Bureaucrat& rhs) {
 /*        Setters/Getters       */
 /*------------------------------*/
 
-const std::string&	Bureaucrat::getName(void) const {
+void	Bureaucrat::setName(const std::string name) {
+	this->name = name;
+}
+
+std::string Bureaucrat::getName(void) const {
 	return (this->name);
 }
 
-const unsigned int&	Bureaucrat::getGrade(void) const {
+unsigned int Bureaucrat::getGrade(void) const {
 	return (this->grade);
 }
 

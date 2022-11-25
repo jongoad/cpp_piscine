@@ -13,12 +13,16 @@ class Bureaucrat
         /* Constructors/Destructor */
         Bureaucrat();
         Bureaucrat(const std::string name, unsigned int grade);
-        Bureaucrat(const Bureaucrat& other);	
+        Bureaucrat(const Bureaucrat &other);	
         ~Bureaucrat();
 
+        /* Operator Overloads */
+        Bureaucrat &operator=(const Bureaucrat& rhs);
+
         /* Setters/Getters */
-        const std::string&      getName(void) const;
-        const unsigned int&	    getGrade(void) const;
+        std::string		getName(void) const;
+        void			setName(const std::string name);
+        unsigned int	getGrade(void) const;
 
         /* Pubic Member Functions */
         void	increaseGrade(void);
@@ -41,9 +45,8 @@ class Bureaucrat
         };
 
     private:
-        const std::string   name;
-        unsigned int        grade;
-        Bureaucrat &operator=(const Bureaucrat& rhs);
+        std::string		name;
+        unsigned int	grade;
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& other);

@@ -9,17 +9,19 @@
 class Zombie {
 	public:
 		/* Constructors & Destructors */
-		Zombie(const std::string name);
+		Zombie(std::string name);
 		~Zombie();
 
 		/* Public Member Functions */
-		void				announce(void);
-		std::string	const&	getName() const;
+		void		announce(void) const;
+		std::string	getName() const;
 
 	private:
 		std::string name;
 };
 
-
+/* External Functions */
+Zombie	*newZombie(const std::string name);
+void	randomChump(const std::string name);
 
 #endif

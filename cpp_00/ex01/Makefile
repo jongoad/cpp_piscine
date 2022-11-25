@@ -1,7 +1,7 @@
 #--------------------------------#
 #    Name and file information   #
 #--------------------------------#
-NAME			:= phonebook
+NAME			:= myawesomephonebook
 
 
 CPP_FILES		:= Main.cpp Contact.cpp PhoneBook.cpp

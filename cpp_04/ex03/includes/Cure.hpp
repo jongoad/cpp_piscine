@@ -13,6 +13,7 @@ class Cure : public AMateria {
         /* Constructors/Destructor */
         Cure();
         Cure(const Cure& other);
+        // Cure(std::string const & type);
     	~Cure();
 
         /* Operator Overloads */

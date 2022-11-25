@@ -1,7 +1,7 @@
 #--------------------------------#
 #    Name and file information   #
 #--------------------------------#
-NAME			:= harlFilter
+NAME			:= harlfilter
 
 CPP_FILES		:= main.cpp Harl.cpp
 
@@ -24,7 +24,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 #--------------------------------#
 #  Compiler settings and flags   #
 #--------------------------------#
-CC				= c++
+CC				= g++
 RM				= rm -rf
 CFLAGS			= -Wall -Wextra -Werror -Wshadow -Wno-shadow -std=c++98 -I./includes
 

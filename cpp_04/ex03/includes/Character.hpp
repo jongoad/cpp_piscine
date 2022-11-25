@@ -7,6 +7,7 @@
 
 class Character : public ICharacter {
     public:
+
 		/* Constructors & Destructor */
 		Character();
 		Character(const std::string& name);

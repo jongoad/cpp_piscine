@@ -1,4 +1,6 @@
-#include "../includes/replace.h"
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
 /* Open input file and read to a string */
 std::string inputFileToString(const std::string &path) {
@@ -29,8 +31,6 @@ void	outputStringToFile(const std::string &path, std::string output) {
 std::string replaceStrings(std::string input, std::string findStr, std::string replaceStr) {
 	size_t pos;
 
-	if (findStr == replaceStr)
-		return(input);
 	while (1) {
 		pos = input.find(findStr);				/* Find the first occurrence of first character in findStr */
 		if (pos == std::string::npos)

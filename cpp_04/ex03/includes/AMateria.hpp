@@ -8,10 +8,13 @@
 
 class AMateria {
     public:
+	
 		/* Constructors & Destructor */
+		// AMateria();
 		AMateria(const AMateria& other);
 		AMateria(std::string const& type);
 		virtual ~AMateria();
+
 
 		/* Public Member Functions */
 		virtual	AMateria*	clone() const = 0;

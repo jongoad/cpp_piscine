@@ -1,4 +1,4 @@
-#include "../includes/Contact.hpp"
+# include "../includes/Contact.hpp"
 
 Contact::Contact() {
 	return;
@@ -41,46 +41,27 @@ void	Contact::SetIndex(int i) {
 }
 
 void	Contact::SetFirstName() {
-	std::string input;
-	std::getline(std::cin >> std::ws, input);
-	if (input.empty())
-		exit(0);
-	this->FirstName = input;
+	std::cin >> this->FirstName;
 }
 
 void Contact::SetLastName() {
-	std::string input;
-	std::getline(std::cin >> std::ws, input);
-	if (input.empty())
-		exit(0);
-	this->LastName = input;
+	std::cin >> this->LastName;
 }
 
 void	Contact::SetNickName() {
-	std::string input;
-	std::getline(std::cin >> std::ws, input);
-	if (input.empty())
-		exit(0);
-	this->NickName = input;
+	std::cin >> this->NickName;
 }
 
 void	Contact::SetNumber() {
-	std::string input;
-	std::getline(std::cin >> std::ws, input);
-	if (input.empty())
-		exit(0);
-	this->PhoneNumber = input;
-}
-
-void	Contact::SetSecret() {
-	std::string input;
-	std::getline(std::cin >> std::ws, input);
-	if (input.empty())
-		exit(0);
-	this->DarkestSecret = input;
+	std::cin >> this->PhoneNumber;
 }
 
 /* Copy functions */
+
+void	Contact::SetSecret() {
+	std::cin >> this->DarkestSecret;
+}
+
 void	Contact::CopyFirstName(std::string Input) {
 	this->FirstName = Input;
 }

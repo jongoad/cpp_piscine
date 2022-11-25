@@ -1,4 +1,8 @@
-#include "PhoneBook.h"
+# include <iostream>
+# include <string>
+# include <iomanip>
+# include <unistd.h>
+# include <ctype.h>
 
 class Contact {
 	public:

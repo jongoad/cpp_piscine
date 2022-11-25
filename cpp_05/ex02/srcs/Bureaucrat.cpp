@@ -37,9 +37,10 @@ Bureaucrat::~Bureaucrat() {
 /*------------------------------*/
 
 /* Assignment operator overload */
-Bureaucrat    &Bureaucrat::operator=(const Bureaucrat& rhs) {
+Bureaucrat    &Bureaucrat::operator=(const Bureaucrat& other) {
 	std::cout << "Bureaucrat copy assignment operator called" << std::endl;
-	(void)rhs;
+	this->name = other.name;
+	this->grade = other.grade;
 	return (*this);
 }
 
@@ -53,11 +54,15 @@ std::ostream&	operator<<(std::ostream& os, const Bureaucrat& other) {
 /*        Setters/Getters       */
 /*------------------------------*/
 
-const std::string&	Bureaucrat::getName(void) const {
+void	Bureaucrat::setName(const std::string name) {
+	this->name = name;
+}
+
+std::string Bureaucrat::getName(void) const {
 	return (this->name);
 }
 
-const unsigned int&	Bureaucrat::getGrade(void) const {
+unsigned int Bureaucrat::getGrade(void) const {
 	return (this->grade);
 }
 

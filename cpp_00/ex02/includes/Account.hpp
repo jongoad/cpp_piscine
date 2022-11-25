@@ -17,38 +17,57 @@
 // ************************************************************************** //
 
 class Account {
-	public:
 
-		typedef Account		t;
+//Static member functions and variable belong to the CLASS not an instance of that class
 
-		//These functions can be called by the class
-		static int	getNbAccounts( void );
-		static int	getTotalAmount( void );
-		static int	getNbDeposits( void );
-		static int	getNbWithdrawals( void );
-		static void	displayAccountsInfos( void );
+public:
 
-		Account( int initial_deposit );
-		~Account( void );
+	typedef Account		t;
 
-		//These functions can be called by individual objects
-		void	makeDeposit( int deposit );
-		bool	makeWithdrawal( int withdrawal );
-		int		checkAmount( void ) const;
-		void	displayStatus( void ) const;
+	//These functions can be called by the class
+	static int	getNbAccounts( void );
+	static int	getTotalAmount( void );
+	static int	getNbDeposits( void );
+	static int	getNbWithdrawals( void );
+	static void	displayAccountsInfos( void );
+
+	Account( int initial_deposit );
+	~Account( void );
+
+	//These functions can be called by individual objects
+	void	makeDeposit( int deposit );
+	bool	makeWithdrawal( int withdrawal );
+	int		checkAmount( void ) const;
+	void	displayStatus( void ) const;
 
 
 private:
+
+	
 	static int	_nbAccounts;
 	static int	_totalAmount;
 	static int	_totalNbDeposits;
 	static int	_totalNbWithdrawals;
+
 	static void	_displayTimestamp( void );
+
 	int				_accountIndex;
 	int				_amount;
 	int				_nbDeposits;
 	int				_nbWithdrawals;
+
 	Account( void );
+
 };
 
-#endif
+
+
+// ************************************************************************** //
+// vim: set ts=4 sw=4 tw=80 noexpandtab:                                      //
+// -*- indent-tabs-mode:t;                                                   -*-
+// -*- mode: c++-mode;                                                       -*-
+// -*- fill-column: 75; comment-column: 75;                                  -*-
+// ************************************************************************** //
+
+
+#endif /* __ACCOUNT_H__ */

@@ -22,7 +22,7 @@ class Harl {
 
 		/* Public Member Functions */
 		void		complain(std::string level);
-		filterLevel	getLevel(std::string level) const;
+		filterLevel	getLevel(std::string level);
 
 	private:
 		void	debug(void);

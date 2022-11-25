@@ -13,6 +13,7 @@ class Ice : public AMateria {
         /* Constructors/Destructor */
         Ice();
         Ice(const Ice& other);
+        //Ice(std::string const & type);
     	~Ice();
 
         /* Operator Overloads */

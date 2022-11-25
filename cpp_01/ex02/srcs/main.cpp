@@ -23,6 +23,6 @@ int	main(void)
 	std::cout << std::endl;
 	std::cout << RED"-----Testing Values----" CLEAR << std::string(2, '\n');
 	std::cout << "Value of string: " << brain << std::endl;
-	std::cout << "Value pointed to by PTR: " << *brainPTR << std::endl;
-	std::cout << "Value pointed to by REF: " << brainREF << std::endl;	
+	std::cout << "Value of PTR: " << brainPTR << std::endl;
+	std::cout << "Value of REF: " << brainREF << std::endl;	
 }

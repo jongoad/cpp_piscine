@@ -24,7 +24,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 #--------------------------------#
 #  Compiler settings and flags   #
 #--------------------------------#
-CC				= c++
+CC				= g++
 RM				= rm -rf
 CFLAGS			= -Wall -Wextra -Werror -Wshadow -Wno-shadow -std=c++98 -I./includes
 
@@ -39,7 +39,7 @@ $(NAME):		$(OBJS)
 				@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
 clean:			
-				@$(RM) $(OBJ_DIR)  test_files/test.txt.replace
+				@$(RM) $(OBJ_DIR)
 				@echo Clean complete.
 
 fclean:			clean

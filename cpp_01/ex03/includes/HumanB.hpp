@@ -12,7 +12,7 @@ class HumanB {
 		~HumanB();
 
 		/* Setters & Getters */
-		void setWeapon(Weapon& weapon);
+		void setWeapon(Weapon &weapon);
 
 		/* Public Member Functions */
 		void attack() const;

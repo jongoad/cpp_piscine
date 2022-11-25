@@ -1,116 +1,68 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "../includes/Span.hpp"
+#include <list>
+#include "../includes/MutantStack.hpp"
+#include "../includes/MutantStack.tpp"
 
 #define RED "\033[1;31m"
 #define CLEAR "\033[0m"
 
 int	main(void) {
 
+	std::cout << RED"----------------------------------" CLEAR << std::endl;
+	std::cout << RED"|           Span Tester          |" CLEAR << std::endl;
+	std::cout << RED"----------------------------------" CLEAR << std::string(2, '\n');
 
-	std::cout << RED"--------------Testing Exceptions-------------" CLEAR << std::endl << std::endl;
-	Span test1(3);
 
-	/* Test with empty span */
-	std::cout << RED"-----Testing with Empty Span-----" CLEAR << std::endl;
-	try {
-		std::cout << "Shortest span: " << test1.shortestSpan() << std::endl;
+	std::cout << RED"--------------Testing Provided Code-------------" CLEAR << std::endl << std::endl;
+	MutantStack<int> mstack;
+	mstack.push(5);
+	mstack.push(17);
+	std::cout << mstack.top() << std::endl;
+	mstack.pop();
+	std::cout << mstack.size() << std::endl;
+	mstack.push(3);
+	mstack.push(5);
+	mstack.push(737);
+	//[...]
+	mstack.push(0);
+	MutantStack<int>::iterator it = mstack.begin();
+	MutantStack<int>::iterator ite = mstack.end();
+	++it;
+	--it;
+	while (it != ite)
+	{
+	std::cout << *it << std::endl;
+	++it;
 	}
-	catch(const std::exception& e) {
-		std::cerr << e.what() << std::endl;
-	}
-	try {
-		std::cout << "Longest span: " << test1.longestSpan() << std::endl;
-	}
-	catch(const std::exception& e) {
-		std::cerr << e.what() << std::endl;
-	}
-	std::cout << std::endl;
+	std::stack<int> s(mstack);
 
-	/* Test with only one value */
-	std::cout << RED"-----Testing with Only One Value Stored-----" CLEAR << std::endl;
-	try {
-		test1.addNumber(1);
-		std::cout << "Shortest span: " << test1.shortestSpan() << std::endl;
-	}
-	catch(const std::exception& e) {
-		std::cerr << e.what() << std::endl;
-	}
-	try {
-		std::cout << "Longest span: " << test1.longestSpan() << std::endl;
-	}
-	catch(const std::exception& e) {
-		std::cerr << e.what() << std::endl;
-	}
-	std::cout << std::endl;
+	std::cout << RED"--------------Running with List------------" CLEAR << std::endl << std::endl;
 
-	/* Test with more than one value */
-	std::cout << RED"-----Testing with Multiple Values Stored-----" CLEAR << std::endl;
-	try {
-		test1.addNumber(3);
-		std::cout << "Shortest span: " << test1.shortestSpan() << std::endl;
+	std::list<int> lstack;
+	lstack.push_back(5);
+	lstack.push_back(17);
+	std::cout << lstack.back() << std::endl;
+	lstack.pop_back();
+	std::cout << lstack.size() << std::endl;
+	lstack.push_back(3);
+	lstack.push_back(5);
+	lstack.push_back(737);
+	//[...]
+	lstack.push_back(0);
+	std::list<int>::iterator it2 = lstack.begin();
+	std::list<int>::iterator ite2 = lstack.end();
+	++it2;
+	--it2;
+	while (it2 != ite2)
+	{
+	std::cout << *it2 << std::endl;
+	++it2;
 	}
-	catch(const std::exception& e) {
-		std::cerr << e.what() << std::endl;
-	}
-	try {
-		std::cout << "Longest span: " << test1.longestSpan() << std::endl;
-	}
-	catch(const std::exception& e) {
-		std::cerr << e.what() << std::endl;
-	}
-	std::cout << std::endl;
-
-	/* Test adding too many values */
-	std::cout << RED"-----Testing with Adding Too Many Values-----" CLEAR << std::endl;
-	try {
-		test1.addNumber(5);
-		std::cout << "Shortest span: " << test1.shortestSpan() << std::endl;
-		std::cout << "Longest span: " << test1.longestSpan() << std::endl;
-		test1.addNumber(7);
-	}
-	catch(const std::exception& e) {
-		std::cerr << e.what() << std::endl;
-	}
-	try {
-		std::cout << "Longest span: " << test1.longestSpan() << std::endl;
-	}
-	catch(const std::exception& e) {
-		std::cerr << e.what() << std::endl;
-	}
-
-	std::cout << std::endl;
-	std::cout << RED"--------------Testing Adding via Iterator Range--------------" CLEAR << std::endl << std::endl;
-
-	/* Create vector to pass iterator range from */
-	std::vector<int> vec;
-	for (int i = 1; i < 4; i++) {
-		vec.push_back(i * i);
-	}
-
-	Span test2(3);
-	Span test3(2);
-
-	try {
-		test2.addNumber(vec.begin(), vec.end());
-		std::cout << "Shortest span is: " << test2.shortestSpan() << std::endl;
-		std::cout << "Longest span is: " << test2.longestSpan() << std::endl;
-
-		test3.addNumber(vec.begin(), vec.end());
-		std::cout << "Shortest span is: " << test3.shortestSpan() << std::endl;
-		std::cout << "Longest span is: " << test3.longestSpan() << std::endl;
-	}
-	catch(const std::exception& e) {
-		std::cerr << e.what() << std::endl;
-	}
-
-	/* Show that values were still added with exception thrown */
-	try {
-		std::cout << "Shortest span is: " << test3.shortestSpan() << std::endl;
-		std::cout << "Longest span is: " << test3.longestSpan() << std::endl;
-	}
-	catch(const std::exception& e) {
-		std::cerr << e.what() << std::endl;
-	}
+	std::list<int> s2(lstack);
 }
+
+
+
+	

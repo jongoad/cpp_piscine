@@ -15,6 +15,12 @@ Ice::Ice(const Ice& other) : AMateria(other) {
 	std::cout << "Ice copy constructor called" << std::endl;
 }
 
+// /* Type Constructor */
+// Ice::Ice(std::string const &type) {
+// 	this->type = type;
+// 	std::cout << "Ice type constructor called" << std::endl;
+// }
+
 /* Destructor */
 Ice::~Ice() {
 	std::cout << "Ice destructor called" << std::endl;
@@ -29,6 +35,10 @@ Ice&	Ice::operator=(const Ice& rhs) {
 	this->AMateria::operator=(rhs);
 	return (*this);
 }
+
+/*------------------------------*/
+/*        Setters/Getters       */
+/*------------------------------*/
 
 /*------------------------------*/
 /*    Public Member Functions   */

@@ -29,7 +29,7 @@ int	main(void)
 	complainer.complain("error");
 	std::cout << std::endl;
 
-	std::cout << RED"-----Testing Debug Level: invalid complaint code-----" CLEAR << std::string(2, '\n');
+	std::cout << RED"-----Testing Debug Level: invalid code-----" CLEAR << std::string(2, '\n');
 	complainer.complain("something");
 	std::cout << std::endl;
 

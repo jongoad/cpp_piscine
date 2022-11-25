@@ -10,42 +10,44 @@ class Form;
 class Bureaucrat
 {
     public:
-        /* Constructors/Destructor */
-        Bureaucrat();
-        Bureaucrat(const std::string name, unsigned int grade);
-        Bureaucrat(const Bureaucrat& other);
-        ~Bureaucrat();
+    /* Constructors/Destructor */
+    Bureaucrat();																/* Default constructor */
+    Bureaucrat(const std::string name, unsigned int grade);						/* Name & grade constructor */
+    Bureaucrat(const Bureaucrat &bureaucrat);									/* Copy constructor */
+    ~Bureaucrat();																/* Destructor */
 
-        /* Setters/Getters */
-        const std::string&  getName(void) const;
-        const unsigned int& getGrade(void) const;
+    /* Operator Overloads */
+    Bureaucrat &operator=(const Bureaucrat &other);                             /* Assignement operator overload */
 
-        /* Pubic Member Functions */
-        void	increaseGrade(void);
-        void	decreaseGrade(void);
-        void    signForm(Form& form) const;
-        void    executeForm(Form& form) const;
+    /* Setters/Getters */
+    std::string		getName(void) const;
+    void			setName(std::string name);
+    unsigned int	getGrade(void) const;
 
-        /* Exceptions */
-        class gradeLowException : public std::exception {
-            public:
-                const char *what() const throw() {
-                    return ("Grade too low!");
-                }
-        };
+	/* Pubic Member Functions */
+	void	increaseGrade(void);
+	void	decreaseGrade(void);
+    void    signForm(Form& form) const;
+    void    executeForm(Form& form) const;
 
-        class gradeHighException : public std::exception {
-            public:
-                const char *what() const throw() {
-                    return ("Grade too high!");
-                }
-        };
+    /* Exceptions */
+    class gradeLowException : public std::exception {
+        public:
+            const char *what() const throw() {
+                return ("Grade too low!");
+            }
+    };
+
+    class gradeHighException : public std::exception {
+        public:
+            const char *what() const throw() {
+                return ("Grade too high!");
+            }
+    };
 
     private:
-        /* Operator Overloads */
-        Bureaucrat &operator=(const Bureaucrat &rhs);
-        const std::string   name;
-        unsigned int	    grade;
+        std::string		name;
+        unsigned int	grade;
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& other);        	/* Insertion operator overload */

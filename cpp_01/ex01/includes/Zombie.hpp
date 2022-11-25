@@ -17,11 +17,11 @@ class Zombie {
 		~Zombie();
 
 		/* Setters & Getters */
-		std::string	const&	getName() const;
-		void				setName(const std::string name);
+		std::string	getName() const;
+		void		setName(const std::string name);
 		
 		/* Public Member Functions */
-		void		announce(void);
+		void		announce(void) const;
 		void		randomChump(const std::string name);
 		
 	private:

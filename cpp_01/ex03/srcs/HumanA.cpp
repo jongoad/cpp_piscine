@@ -1,7 +1,7 @@
 #include "../includes/HumanA.hpp"
 
 /* Constructors & Destructor */
-HumanA::HumanA(std::string const& name, Weapon& weapon): weapon(weapon), name(name) {
+HumanA::HumanA(std::string const &name, Weapon& weapon): weapon(weapon), name(name) {
 }
 
 HumanA::~HumanA() {

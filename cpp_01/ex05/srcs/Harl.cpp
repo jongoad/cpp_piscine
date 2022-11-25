@@ -10,29 +10,26 @@ Harl::~Harl() {
 }
 
 /* Public Member Functions */
-void	Harl::complain(std::string level) {
-	void (Harl::*complaint[])(void) = { 					/* Create an array of member function pointers */
+void	Harl::complain(const std::string level) {
+	/* Use the string level to call the appropriate function using a function pointer */
+	void (Harl::*complaint[])(void) = { /* Create an array of member function pointers */
 		&Harl::debug,
 		&Harl::info,
 		&Harl::warning,
 		&Harl::error,
 	};
 
-	std::string complaintLevel[] = {						/* Create an array of complaint strings */
+	std::string complaintLevel[] = {	/* Create an array of complaint strings */
 		"debug",
 		"info",
 		"warning",
 		"error",
 	};
 	
-	for(int i = 0; i <= 4; i++) {							/* Iterate through array to find match */
+	for(int i = 0; i < 4; i++) {							/* Iterate through array to find match */
 		void (Harl::*outputComplaint)(void) = complaint[i];	/* Set output function pointer */
-		if (level == complaintLevel[i]) {
+		if (level == complaintLevel[i])
 			(this->*outputComplaint)();
-			break;
-		};
-		if (i == 4)
-			std::cout << "Complaint not found" << std::endl;
 	}
 }
 

@@ -1,10 +1,5 @@
 # include "../includes/PhoneBook.hpp"
 
-void	lower(std::string& str) {
-	for (std::string::iterator it=str.begin(); it!=str.end(); ++it)
-		*it = tolower(*it);
-}
-
 int	main(void)
 {
 	PhoneBook NewPhoneBook;
@@ -13,15 +8,13 @@ int	main(void)
 	while(1)
 	{
 		NewPhoneBook.PromptInput();
-		std::getline(std::cin >> std::ws, Input);
-		if (Input.empty())
-			exit(0);
-		lower(Input);
-		if (Input == "add")
+		std::cin >> Input;
+
+		if (Input == "Add")
 			NewPhoneBook.AddContact();
-		else if (Input == "search")
+		else if (Input == "Search")
 			NewPhoneBook.SearchContacts();
-		else if (Input == "exit")
+		else if (Input == "Exit")
 			std::exit(0);
 		else {
 			std::system("clear");
